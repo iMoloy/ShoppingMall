@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --color-brand-600: #e11d48;
+  --color-brand-700: #be123c;
+
+  --color-surface: #ffffff;
+  --color-surface-raised: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-muted: #64748b;
+}
+
+.dark {
+  --color-surface: #09090b;
+  --color-surface-raised: #18181b;
+  --color-border: #27272a;
+  --color-text-primary: #fafafa;
+  --color-text-muted: #a1a1aa;
+}
+
+/* Base reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  min-height: 100dvh;
+  line-height: 1.6;
+}
+
+/* Focus — keyboard only, clean ring */
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar — subtle */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 99px;
+}
