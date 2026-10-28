@@ -1,7 +1,7 @@
-import { forwardRef } from 'react'
+import { cloneElement, forwardRef, isValidElement } from 'react'
 
-type Variant = 'primary' | 'secondary' | 'destructive' | 'ghost'
-type Size = 'sm' | 'md' | 'lg'
+export type Variant = 'primary' | 'secondary' | 'destructive' | 'ghost'
+export type Size = 'sm' | 'md' | 'lg'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant
@@ -26,21 +26,27 @@ const sizeClasses: Record<Size, string> = {
   lg: 'px-5 py-2.5 text-sm',
 }
 
-function buildClassName(variant: Variant, size: Size, extra = '') {
+export function buttonVariants({
+  variant = 'primary',
+  size = 'md',
+  className = '',
+}: {
+  variant?: Variant
+  size?: Size
+  className?: string
+} = {}) {
   return [
     'inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors duration-150',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)] focus-visible:ring-offset-1',
     'disabled:cursor-not-allowed',
     variantClasses[variant],
     sizeClasses[size],
-    extra,
+    className,
   ]
     .filter(Boolean)
     .join(' ')
 }
 
-// When asChild=true, we clone the single child element and spread button-like
-// classes onto it (e.g. <Link>). This avoids invalid <button><a> nesting.
 interface AsChildProps {
   variant?: Variant
   size?: Size
@@ -53,21 +59,18 @@ export function Button(props: AsChildProps): React.ReactElement
 export function Button(props: ButtonProps): React.ReactElement
 export function Button(props: ButtonProps | AsChildProps): React.ReactElement {
   const { variant = 'primary', size = 'md', className = '' } = props
-  const builtClass = buildClassName(variant, size, className)
+  const builtClass = buttonVariants({ variant, size, className })
 
   if ('asChild' in props && props.asChild) {
-    const child = props.children as React.ReactElement<{ className?: string }>
-    return {
-      ...child,
-      props: {
-        ...child.props,
+    const child = props.children
+    if (isValidElement<{ className?: string }>(child)) {
+      return cloneElement(child, {
         className: [child.props.className, builtClass].filter(Boolean).join(' '),
-      },
-    } as React.ReactElement
+      })
+    }
   }
 
-  const { loading = false, children, disabled, ...rest } =
-    props as ButtonProps
+  const { loading = false, children, disabled, ...rest } = props as ButtonProps
   delete (rest as { asChild?: boolean }).asChild
 
   return (
@@ -88,7 +91,7 @@ const ButtonInner = forwardRef<
   HTMLButtonElement,
   Omit<ButtonProps, 'asChild'> & { variant: Variant; size: Size }
 >(({ variant, size, loading = false, className = '', children, ...props }, ref) => (
-  <button ref={ref} className={buildClassName(variant, size, className)} {...props}>
+  <button ref={ref} className={buttonVariants({ variant, size, className })} {...props}>
     {loading && <SpinnerIcon />}
     {children}
   </button>
