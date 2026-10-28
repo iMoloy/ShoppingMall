@@ -10,4 +10,4 @@ export interface AuthUser {
 
 // For next/navigation searchParams
 export type SearchParams = Record<string, string | string[] | undefined>
-export type PageParams = Record<string, string>
+export type PageParams = Record<string, string | undefined>
