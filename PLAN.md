@@ -350,11 +350,11 @@ Button variants:
 | F3 | Base layout — Navbar, Footer, ThemeToggle, MobileMenu | ✅ |
 | F4 | UI primitives — Button, Input, Badge, Skeleton, Toast, Modal | ✅ |
 | F5 | Auth pages — Login, Register (forms + Zod validation) | ✅ |
-| F6 | Homepage — Hero section, category quick-links | ⬜ |
-| F7 | Product listing page — grid, filters, skeleton loading | ⬜ |
-| F8 | Product detail page — images, stock badge, Add to Cart | ⬜ |
-| F9 | Cart — Zustand store + CartDrawer slide-in | ⬜ |
-| F10 | Checkout — multi-step form (address → summary → confirm) | ⬜ |
+| F6 | Homepage — Hero section, category quick-links | ✅ |
+| F7 | Product listing page — grid, filters, skeleton loading | ✅ |
+| F8 | Product detail page — images, stock badge, Add to Cart | ✅ |
+| F9 | Cart — Zustand store + CartDrawer slide-in + Cart Page | ✅ |
+| F10 | Checkout — multi-step form (address → summary → confirm) | ✅ |
 | F11 | Order history page (buyer) | ⬜ |
 | F12 | Admin dashboard — layout, product CRUD, order management | ⬜ |
 | F13 | proxy.ts — route protection (Next.js 16 convention) | ✅ |
