@@ -1,5 +1,11 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/theme/theme-toggle'
+
+export const metadata: Metadata = {
+  title: 'Authentication | Shopping Mall',
+  description: 'Sign in or register for an account at Shopping Mall.',
+}
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -355,10 +355,10 @@ Button variants:
 | F8 | Product detail page — images, stock badge, Add to Cart | ✅ |
 | F9 | Cart — Zustand store + CartDrawer slide-in + Cart Page | ✅ |
 | F10 | Checkout — multi-step form (address → summary → confirm) | ✅ |
-| F11 | Order history page (buyer) | ⬜ |
-| F12 | Admin dashboard — layout, product CRUD, order management | ⬜ |
+| F11 | Order history page (buyer) | ✅ |
+| F12 | Admin dashboard — layout, product CRUD, order management | ✅ |
 | F13 | proxy.ts — route protection (Next.js 16 convention) | ✅ |
-| F14 | SEO — generateMetadata per page, not-found, error, loading | ⬜ |
+| F14 | SEO — generateMetadata per page, not-found, error, loading | ✅ |
 
 ### BACKEND
 

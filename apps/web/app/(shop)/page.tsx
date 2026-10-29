@@ -1,6 +1,12 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { NewsletterForm } from '@/components/ui/newsletter-form'
+
+export const metadata: Metadata = {
+  title: 'Home | Shopping Mall',
+  description: 'Shop premium bags, luxury watches, and modern accessories at honest prices.',
+}
 
 const CATEGORIES = [
   { name: 'Bags', slug: 'bags', description: 'Leather, canvas & more' },

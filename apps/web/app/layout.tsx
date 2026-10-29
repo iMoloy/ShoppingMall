@@ -9,6 +9,22 @@ export const metadata: Metadata = {
   },
   description: 'Discover bags, watches, and accessories at the best prices.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
+  openGraph: {
+    title: 'Shopping Mall',
+    description: 'Discover bags, watches, and accessories at the best prices.',
+    siteName: 'Shopping Mall',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shopping Mall',
+    description: 'Discover bags, watches, and accessories at the best prices.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
