@@ -63,17 +63,17 @@ export function CartDrawer() {
     0,
   )
 
+  if (!isOpen) return null
+
   return (
     <>
       {/* Backdrop */}
-      {isOpen && (
-        <div
-          ref={overlayRef}
-          onClick={closeCart}
-          aria-hidden="true"
-          className="fixed inset-0 z-40 bg-black/30"
-        />
-      )}
+      <div
+        ref={overlayRef}
+        onClick={closeCart}
+        aria-hidden="true"
+        className="fixed inset-0 z-40 bg-black/40"
+      />
 
       {/* Drawer */}
       <div
@@ -81,10 +81,7 @@ export function CartDrawer() {
         role="dialog"
         aria-modal="true"
         aria-label="Shopping cart"
-        className={[
-          'fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-[var(--color-surface)] shadow-xl transition-transform duration-200',
-          isOpen ? 'translate-x-0' : 'translate-x-full',
-        ].join(' ')}
+        className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-[var(--color-surface)] shadow-xl"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-4">

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const PROTECTED_PATHS = ['/cart', '/checkout', '/orders', '/dashboard']
+const PROTECTED_PATHS = ['/checkout', '/orders', '/dashboard']
 const AUTH_PATHS = ['/login', '/register']
 const ADMIN_PATHS = ['/dashboard']
 

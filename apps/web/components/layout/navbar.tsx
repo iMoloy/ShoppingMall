@@ -9,6 +9,7 @@ import { useCartCount, useCartStore } from '@/store/cart'
 const NAV_LINKS = [
   { label: 'Products', href: '/products' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export function Navbar() {
@@ -105,7 +106,14 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
-            <li className="mt-2 border-t border-[var(--color-border)] pt-2">
+            <li className="mt-2 border-t border-[var(--color-border)] pt-2 flex flex-col gap-1">
+              <Link
+                href="/orders"
+                onClick={() => setMenuOpen(false)}
+                className="block rounded-md px-3 py-2 text-sm text-[var(--color-text-muted)] transition-colors duration-150 hover:bg-[var(--color-surface-raised)] hover:text-[var(--color-text-primary)]"
+              >
+                My Orders
+              </Link>
               <Link
                 href="/login"
                 onClick={() => setMenuOpen(false)}
