@@ -23,6 +23,16 @@ export const checkoutSchema = z.object({
   city: z.string().min(2),
 })
 
+export const createProductSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  description: z.string().min(10, 'Description must be at least 10 characters'),
+  price: z.number().positive('Price must be greater than 0'),
+  stock: z.number().int().nonnegative('Stock cannot be negative'),
+  categoryId: z.string().min(1, 'Category is required'),
+  imageUrl: z.string().url('Must be a valid image URL').optional().or(z.literal('')),
+})
+
 export type LoginInput = z.infer<typeof loginSchema>
 export type RegisterInput = z.infer<typeof registerSchema>
 export type CheckoutInput = z.infer<typeof checkoutSchema>
+export type CreateProductInput = z.infer<typeof createProductSchema>
