@@ -41,37 +41,40 @@ export function AddToCartButton({ product, disabled = false }: Props) {
   }
 
   return (
-    <div className="flex items-center gap-3">
-      {/* Quantity stepper */}
-      <div className="flex items-center rounded-md border border-[var(--color-border)]">
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+      {/* Quantity stepper (44px touch target) */}
+      <div className="flex h-11 items-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)]">
         <button
           onClick={() => setQuantity((q) => Math.max(1, q - 1))}
           disabled={quantity <= 1 || disabled}
           aria-label="Decrease quantity"
-          className="flex h-9 w-9 items-center justify-center text-[var(--color-text-muted)] transition-colors duration-150 hover:text-[var(--color-text-primary)] disabled:opacity-40"
+          className="flex h-11 w-11 items-center justify-center text-base font-semibold text-[var(--color-text-muted)] transition-colors duration-150 hover:text-[var(--color-text-primary)] disabled:opacity-40"
         >
           −
         </button>
-        <span className="w-8 text-center text-sm text-[var(--color-text-primary)]">{quantity}</span>
+        <span className="w-10 text-center text-sm font-bold text-[var(--color-text-primary)]">
+          {quantity}
+        </span>
         <button
           onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
           disabled={quantity >= product.stock || disabled}
           aria-label="Increase quantity"
-          className="flex h-9 w-9 items-center justify-center text-[var(--color-text-muted)] transition-colors duration-150 hover:text-[var(--color-text-primary)] disabled:opacity-40"
+          className="flex h-11 w-11 items-center justify-center text-base font-semibold text-[var(--color-text-muted)] transition-colors duration-150 hover:text-[var(--color-text-primary)] disabled:opacity-40"
         >
           +
         </button>
       </div>
 
+      {/* Primary Action Button (44px touch target) */}
       <Button
         variant="primary"
         size="lg"
         loading={loading}
         disabled={disabled}
         onClick={handleAdd}
-        className="flex-1"
+        className="h-11 flex-1 uppercase tracking-wider font-semibold text-xs"
       >
-        Add to cart
+        {disabled ? 'Out of Stock' : 'Add to Shopping Bag'}
       </Button>
     </div>
   )
