@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/product/product-card'
 import { NewsletterForm } from '@/components/ui/newsletter-form'
+import { HeroSlider } from './hero-slider'
 import type { ProductListItem } from '@shoppingmall/shared-types'
 
 export const metadata: Metadata = {
   title: 'Shopping Mall | Luxury Fashion & Modern Essentials',
   description:
-    'Discover the Summer Collection. Up to 35% off curated clothing, bags, watches, and modern fashion essentials.',
+    'Discover the Summer & Winter Collections 2026. Up to 40% off curated clothing, bags, watches, and modern fashion essentials.',
 }
 
 const BRAND_PARTNERS = [
@@ -108,78 +108,8 @@ export default function HomePage() {
           <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12">
             {/* Left Column (8 Cols): Main Hero Card + 2 Standalone Spotlight Cards */}
             <div className="flex flex-col gap-6 lg:col-span-8">
-              {/* Standalone Main Hero Showcase Card */}
-              <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-6 sm:p-8">
-                <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-12">
-                  <div className="md:col-span-7">
-                    <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[var(--color-brand-600)]">
-                      <span>Summer Collection 2026</span>
-                      <span className="h-1 w-1 rounded-full bg-[var(--color-brand-600)]" />
-                      <span>Up to 35% Off</span>
-                    </div>
-
-                    <h1 className="text-2xl font-extrabold uppercase leading-[1.12] tracking-tight text-[var(--color-text-primary)] sm:text-4xl lg:text-5xl">
-                      Summer Women&apos;s &amp; Men&apos;s Signature Drop
-                    </h1>
-
-                    <p className="mt-3 text-xs leading-relaxed text-[var(--color-text-muted)] sm:text-sm">
-                      Curated runway fashion, architectural leather accessories, and precision
-                      timepieces. Designed with uncompromising craft.
-                    </p>
-
-                    <div className="mt-6 flex flex-wrap items-center gap-3">
-                      <Button asChild variant="primary" size="lg">
-                        <Link href="/products">Shop The Collection</Link>
-                      </Button>
-                      <Button asChild variant="secondary" size="lg">
-                        <Link href="/products?category=bags">Explore Bags</Link>
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Hero Editorial Photo Tile */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[var(--color-border)] sm:aspect-[3/4] md:col-span-5">
-                    <Image
-                      src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80"
-                      alt="Runway Summer Collection Editorial"
-                      fill
-                      priority
-                      sizes="(max-width: 768px) 100vw, 30vw"
-                      className="object-cover"
-                    />
-                    <div className="absolute bottom-2.5 left-2.5 right-2.5 rounded-lg bg-[var(--color-surface)]/85 p-2 backdrop-blur-md">
-                      <p className="text-[9px] font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
-                        Runway Exclusive
-                      </p>
-                      <p className="text-[11px] font-semibold text-[var(--color-text-primary)] truncate">
-                        Linen Suit &amp; Minimalist Leather
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom stats inside main hero */}
-                <div className="mt-6 grid grid-cols-3 border-t border-[var(--color-border)]/70 pt-5 text-center sm:text-left">
-                  <div>
-                    <p className="text-lg font-bold text-[var(--color-text-primary)] sm:text-xl">38+</p>
-                    <p className="text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-                      Curated Styles
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-lg font-bold text-[var(--color-text-primary)] sm:text-xl">100%</p>
-                    <p className="text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-                      Authentic Craft
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-lg font-bold text-[var(--color-text-primary)] sm:text-xl">48h</p>
-                    <p className="text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-                      Fast Delivery
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {/* Standalone Main Hero Showcase Card with Smooth Seasonal Slider */}
+              <HeroSlider />
 
               {/* 2 Standalone Spotlight Cards (Separated just like the right side cards) */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -460,7 +390,7 @@ export default function HomePage() {
       <section className="mx-auto w-full max-w-7xl px-4 sm:px-6">
         <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-8 sm:p-14">
           <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-            <span className="rounded-full bg-[var(--color-brand-600)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[var(--color-brand-600)]">
+            <span className="rounded-md bg-[var(--color-brand-600)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[var(--color-brand-600)]">
               Exclusive Access
             </span>
             <h2 className="mt-4 text-2xl font-bold uppercase tracking-tight text-[var(--color-text-primary)] sm:text-4xl">
