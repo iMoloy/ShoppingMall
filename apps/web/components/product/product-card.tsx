@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useCartStore } from '@/store/cart'
+import { useWishlistStore } from '@/store/wishlist'
 import { toast } from '@/components/ui/toast'
 import { Badge } from '@/components/ui/badge'
 import { api } from '@/lib/api'
@@ -23,8 +24,9 @@ const COLOR_SWATCHES = [
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addItem, openCart } = useCartStore()
+  const isWishlisted = useWishlistStore((s) => s.items.some((i) => i.id === product.id))
+  const toggleWishlist = useWishlistStore((s) => s.toggleItem)
   const [selectedColor, setSelectedColor] = useState(0)
-  const [isWishlisted, setIsWishlisted] = useState(false)
   const [isAdding, setIsAdding] = useState(false)
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false)
 
@@ -85,9 +87,9 @@ export function ProductCard({ product }: ProductCardProps) {
   function handleToggleWishlist(e: React.MouseEvent) {
     e.preventDefault()
     e.stopPropagation()
-    setIsWishlisted((prev) => !prev)
+    const added = toggleWishlist(product)
     toast.success(
-      !isWishlisted ? 'Saved to your wishlist' : 'Removed from your wishlist',
+      added ? `${product.name} saved to wishlist` : `${product.name} removed from wishlist`,
     )
   }
 
@@ -141,7 +143,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <button
           onClick={handleToggleWishlist}
           aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-          className={`absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-surface)]/90 text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm transition-colors duration-150 hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)] ${
+          className={`absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-md bg-[var(--color-surface)]/90 text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm transition-colors duration-150 hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)] ${
             isWishlisted ? 'text-red-500' : 'text-[var(--color-text-muted)]'
           }`}
         >
@@ -197,7 +199,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 aria-label={`Select ${swatch.name}`}
                 title={swatch.name}
                 style={{ backgroundColor: swatch.hex }}
-                className={`h-2.5 w-2.5 rounded-full transition-transform ${
+                className={`h-2.5 w-2.5 rounded-sm transition-transform ${
                   selectedColor === idx
                     ? 'ring-1 ring-[var(--color-text-primary)] ring-offset-1'
                     : 'opacity-70 hover:opacity-100'

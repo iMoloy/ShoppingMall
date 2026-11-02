@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { CurrencySelector } from '@/components/layout/currency-selector'
 
 const FOOTER_SECTIONS = [
   {
@@ -14,7 +15,7 @@ const FOOTER_SECTIONS = [
   {
     title: 'Client Services',
     links: [
-      { label: 'Track Your Order', href: '/orders' },
+      { label: 'Track Your Order', href: '/tracking' },
       { label: 'Shipping & Delivery', href: '/shipping' },
       { label: 'Returns & Exchanges', href: '/returns' },
       { label: 'Sizing & Care Guide', href: '/sizing-guide' },
@@ -36,6 +37,7 @@ const FOOTER_SECTIONS = [
     links: [
       { label: 'Sign In', href: '/login' },
       { label: 'Create Account', href: '/register' },
+      { label: 'Saved Wishlist', href: '/wishlist' },
       { label: 'Order History', href: '/orders' },
       { label: 'Shopping Bag', href: '/cart' },
       { label: 'Admin Portal', href: '/dashboard' },
@@ -153,11 +155,9 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Payment Guarantee & Currency */}
+          {/* Payment Guarantee & Currency Selector */}
           <div className="flex flex-wrap items-center gap-4 text-xs text-[var(--color-text-muted)]">
-            <span className="rounded border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold tracking-wider text-[var(--color-text-muted)]">
-              USD ($) • Global Shipping
-            </span>
+            <CurrencySelector variant="footer" />
             <span className="rounded border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold tracking-wider text-[var(--color-text-muted)]">
               256-Bit SSL Encrypted
             </span>
