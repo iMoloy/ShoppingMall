@@ -62,11 +62,20 @@ export default function AdminProductsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-[var(--color-border)] pb-5">
         <div>
-          <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Product Catalog</h1>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
+              Inventory
+            </span>
+            <span className="text-[var(--color-border)]">•</span>
+            <span className="text-xs text-[var(--color-text-muted)]">Atelier Archive</span>
+          </div>
+          <h1 className="mt-1 font-serif text-2xl font-bold uppercase tracking-tight text-[var(--color-text-primary)] sm:text-3xl">
+            Product Catalogue & Stock
+          </h1>
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-            Manage your store inventory, prices, and catalog status.
+            Manage your store inventory, SKU pricing, and piece availability.
           </p>
         </div>
         <Button asChild variant="primary">
@@ -115,7 +124,7 @@ export default function AdminProductsPage() {
                   <tr key={product.id} className="hover:bg-[var(--color-surface-raised)] transition-colors">
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded border border-[var(--color-border)] bg-[var(--color-surface-raised)]">
+                        <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)]">
                           {product.images[0] ? (
                             <Image
                               src={product.images[0]}

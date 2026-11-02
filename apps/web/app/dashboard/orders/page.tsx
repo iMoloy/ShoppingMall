@@ -87,10 +87,19 @@ export default function AdminOrdersPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Customer Orders</h1>
+      <div className="border-b border-[var(--color-border)] pb-5">
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
+            Operations
+          </span>
+          <span className="text-[var(--color-border)]">•</span>
+          <span className="text-xs text-[var(--color-text-muted)]">Fulfillment Pipeline</span>
+        </div>
+        <h1 className="mt-1 font-serif text-2xl font-bold uppercase tracking-tight text-[var(--color-text-primary)] sm:text-3xl">
+          Order Dispatch & Fulfillment
+        </h1>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-          Fulfill shipments, update dispatch milestones, and review purchase totals.
+          Manage atelier shipping milestones, inspect customer waybills, and update dispatch states.
         </p>
       </div>
 

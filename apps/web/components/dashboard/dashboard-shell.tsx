@@ -41,6 +41,17 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
+  {
+    label: 'Lookbook',
+    href: '/lookbook',
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect width="18" height="18" x="3" y="3" rx="2" />
+        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+        <circle cx="9" cy="9" r="2" />
+      </svg>
+    ),
+  },
 ]
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
@@ -57,16 +68,17 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col md:flex-row">
       {/* Mobile Header */}
-      <header className="flex h-14 items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-surface)] px-4 md:hidden">
-        <Link href="/dashboard" className="text-base font-semibold text-[var(--color-text-primary)]">
-          Admin Panel
+      <header className="flex h-16 items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-surface)] px-4 md:hidden">
+        <Link href="/dashboard" className="flex items-center gap-2">
+          <span className="font-serif text-lg font-bold tracking-widest text-[var(--color-text-primary)]">ATELIER</span>
+          <span className="rounded-md border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">Ops</span>
         </Link>
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle navigation menu"
-            className="flex h-9 w-9 items-center justify-center rounded-md text-[var(--color-text-muted)] hover:bg-[var(--color-surface-raised)]"
+            className="flex h-10 w-10 items-center justify-center rounded-md border border-[var(--color-border)] text-[var(--color-text-muted)] hover:bg-[var(--color-surface-raised)]"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="4" x2="20" y1="12" y2="12" />
@@ -84,16 +96,28 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
         ].join(' ')}
       >
-        <div className="flex h-14 items-center justify-between border-b border-[var(--color-border)] px-6">
+        <div className="flex h-16 items-center justify-between border-b border-[var(--color-border)] px-6">
           <Link
             href="/dashboard"
-            className="text-base font-semibold text-[var(--color-text-primary)]"
+            className="flex flex-col"
             onClick={() => setMobileOpen(false)}
           >
-            Admin Panel
+            <span className="font-serif text-base font-bold tracking-widest text-[var(--color-text-primary)]">ATELIER</span>
+            <span className="text-[10px] uppercase tracking-wider text-[var(--color-text-muted)]">Operations Suite</span>
           </Link>
           <div className="hidden md:block">
             <ThemeToggle />
+          </div>
+        </div>
+
+        {/* Live Storefront Status Badge */}
+        <div className="px-5 pt-4 pb-2">
+          <div className="flex items-center justify-between rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)]/60 px-3 py-2 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-sm bg-emerald-500 animate-pulse" />
+              <span className="font-medium text-[var(--color-text-primary)]">Storefront Online</span>
+            </div>
+            <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">v1.2</span>
           </div>
         </div>
 
