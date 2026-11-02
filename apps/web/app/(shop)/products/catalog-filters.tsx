@@ -70,7 +70,7 @@ export function CatalogFilters({ categories, totalCount }: Props) {
           <button
             type="button"
             onClick={() => updateQuery({ category: null })}
-            className={`rounded-full px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors duration-150 ${
+            className={`rounded-md px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors duration-150 ${
               !currentCategory
                 ? 'bg-[var(--color-text-primary)] text-[var(--color-surface)]'
                 : 'border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-text-primary)] hover:text-[var(--color-text-primary)]'
@@ -83,7 +83,7 @@ export function CatalogFilters({ categories, totalCount }: Props) {
               key={c.id}
               type="button"
               onClick={() => updateQuery({ category: currentCategory === c.slug ? null : c.slug })}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors duration-150 ${
+              className={`rounded-md px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors duration-150 ${
                 currentCategory === c.slug
                   ? 'bg-[var(--color-text-primary)] text-[var(--color-surface)]'
                   : 'border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-text-primary)] hover:text-[var(--color-text-primary)]'

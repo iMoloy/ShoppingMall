@@ -152,7 +152,7 @@ export function ProductReviews({ productName }: { productName: string }) {
             return (
               <div key={star} className="flex items-center gap-3 text-xs">
                 <span className="w-6 font-bold text-[var(--color-text-primary)]">{star}★</span>
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-[var(--color-border)]">
+                <div className="h-2 flex-1 overflow-hidden rounded bg-[var(--color-border)]">
                   <div
                     className="h-full bg-[var(--color-text-primary)] transition-all duration-300"
                     style={{ width: `${percentage}%` }}

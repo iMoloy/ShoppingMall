@@ -79,7 +79,7 @@ export default function StoresPage() {
                 <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
                   {s.city}
                 </span>
-                <span className="rounded-full bg-[var(--color-surface)] px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-primary)] border border-[var(--color-border)]">
+                <span className="rounded-md bg-[var(--color-surface)] px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-primary)] border border-[var(--color-border)]">
                   {s.neighborhood}
                 </span>
               </div>

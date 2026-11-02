@@ -58,7 +58,7 @@ export default function OrdersPage() {
             <div key={i} className="rounded-lg border border-[var(--color-border)] p-6 space-y-4">
               <div className="flex justify-between items-center">
                 <Skeleton className="h-5 w-40" />
-                <Skeleton className="h-6 w-20 rounded-full" />
+                <Skeleton className="h-6 w-20 rounded-md" />
               </div>
               <Skeleton className="h-16 w-full" />
               <div className="flex justify-between items-center pt-2">
@@ -89,7 +89,7 @@ export default function OrdersPage() {
   if (orders.length === 0) {
     return (
       <div className="mx-auto max-w-5xl px-4 py-20 text-center sm:px-6">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-surface-raised)] text-[var(--color-text-muted)]">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-surface-raised)] text-[var(--color-text-muted)]">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
             <path d="M3 6h18" />

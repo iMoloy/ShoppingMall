@@ -302,7 +302,7 @@ export default async function ProductsPage({ searchParams }: Props) {
 
       {/* Active Search Query Notice */}
       {query && (
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-raised)] px-3 py-1 text-xs">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)] px-3 py-1 text-xs">
           <span className="text-[var(--color-text-muted)]">Showing results for:</span>
           <span className="font-semibold text-[var(--color-text-primary)]">&ldquo;{query}&rdquo;</span>
           <Link

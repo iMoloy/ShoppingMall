@@ -136,7 +136,7 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
         <button
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute right-3.5 top-3.5 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-surface)]/80 text-[var(--color-text-muted)] backdrop-blur-md transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]"
+          className="absolute right-3.5 top-3.5 z-20 flex h-9 w-9 items-center justify-center rounded-md bg-[var(--color-surface)]/80 text-[var(--color-text-muted)] backdrop-blur-md transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -214,7 +214,7 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
                     onClick={() => setSelectedColor(idx)}
                     aria-label={`Select ${swatch.name}`}
                     style={{ backgroundColor: swatch.hex }}
-                    className={`h-6 w-6 rounded-full transition-transform ${
+                    className={`h-6 w-6 rounded-md transition-transform ${
                       selectedColor === idx
                         ? 'ring-2 ring-[var(--color-text-primary)] ring-offset-2'
                         : 'opacity-70 hover:opacity-100'
