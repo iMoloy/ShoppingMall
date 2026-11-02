@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
-import { Badge } from '@/components/ui/badge'
 import { AddToCartButton } from '@/components/product/add-to-cart-button'
+import { ProductGallery } from '@/components/product/product-gallery'
+import { StockUrgencyTimer } from '@/components/product/stock-urgency-timer'
+import { ProductSizePicker } from '@/components/product/product-size-picker'
 import { ProductReviews } from '@/components/product/product-reviews'
 import { RecentlyViewed } from '@/components/product/recently-viewed'
 import type { ApiSuccess, ProductDetail } from '@shoppingmall/shared-types'
@@ -144,7 +145,6 @@ export default async function ProductDetailPage({ params }: Props) {
   if (!product) notFound()
 
   const inStock = product.stock > 0
-  const mainImage = product.images[0] ?? null
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
@@ -173,70 +173,13 @@ export default async function ProductDetailPage({ params }: Props) {
 
       {/* Product Display Grid (Figma style 3:4 portrait layout) */}
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-        {/* Left Side: 3:4 Portrait Fashion Media Gallery */}
+        {/* Left Side: 3:4 Portrait Fashion Media Gallery with Zoom & Lightbox */}
         <div className="flex flex-col gap-4 lg:col-span-7">
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)]">
-            {mainImage ? (
-              <Image
-                src={mainImage}
-                alt={product.name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                className="object-cover"
-                priority
-              />
-            ) : (
-              <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-[var(--color-text-muted)]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="54"
-                  height="54"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                  <circle cx="9" cy="9" r="2" />
-                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-                </svg>
-                <span className="text-xs font-semibold uppercase tracking-widest">
-                  {product.category.name} Edition
-                </span>
-              </div>
-            )}
-
-            {!inStock && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-surface)]/80 backdrop-blur-sm">
-                <Badge variant="muted" className="text-sm font-semibold uppercase">
-                  Out of Stock
-                </Badge>
-              </div>
-            )}
-          </div>
-
-          {/* Thumbnail Gallery */}
-          {product.images.length > 1 && (
-            <div className="flex gap-3">
-              {product.images.slice(0, 4).map((img, i) => (
-                <div
-                  key={i}
-                  className="relative aspect-[3/4] h-24 overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)] transition-opacity hover:opacity-80"
-                >
-                  <Image
-                    src={img}
-                    alt={`${product.name} preview ${i + 1}`}
-                    fill
-                    sizes="96px"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+          <ProductGallery
+            images={product.images}
+            productName={product.name}
+            inStock={inStock}
+          />
         </div>
 
         {/* Right Side: Product Details & Purchase Actions */}
@@ -271,35 +214,16 @@ export default async function ProductDetailPage({ params }: Props) {
             </div>
           </div>
 
+          {/* Real-time stock status & same-day dispatch countdown */}
+          <StockUrgencyTimer stock={product.stock} />
+
           {/* Description */}
           <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
             {product.description}
           </p>
 
-          {/* Size Selector (Figma style) */}
-          <div className="border-t border-[var(--color-border)] pt-4">
-            <div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[var(--color-text-primary)]">
-              <span>Select Size</span>
-              <span className="text-[var(--color-text-muted)] hover:underline cursor-pointer">
-                Size Guide
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {['XS', 'S', 'M', 'L', 'XL'].map((size, idx) => (
-                <button
-                  key={size}
-                  type="button"
-                  className={`flex h-11 w-12 items-center justify-center rounded border text-xs font-bold uppercase transition-colors ${
-                    idx === 1
-                      ? 'border-[var(--color-text-primary)] bg-[var(--color-text-primary)] text-[var(--color-surface)]'
-                      : 'border-[var(--color-border)] text-[var(--color-text-primary)] hover:border-[var(--color-text-primary)]'
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Interactive Size Selector & Find My Size Calculator */}
+          <ProductSizePicker productName={product.name} />
 
           {/* Add to Cart Actions */}
           <div className="border-t border-[var(--color-border)] pt-4">
