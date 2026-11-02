@@ -91,7 +91,7 @@ export function SocialSidebar() {
   return (
     <aside
       aria-label="Social links"
-      className="fixed left-2 top-1/2 z-30 hidden -translate-y-1/2 flex-col items-center gap-1.5 rounded-lg border border-[var(--color-border)]/40 bg-transparent p-1 backdrop-blur-[2px] transition-all duration-200 hover:border-[var(--color-border)] hover:bg-[var(--color-surface)]/30 xl:flex"
+      className="fixed left-2 top-1/2 z-30 hidden -translate-y-1/2 flex-col items-center gap-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-1 shadow-md transition-all duration-200 xl:flex"
     >
       {SOCIAL_LINKS.map((item) => {
         const Icon = item.icon
@@ -102,9 +102,9 @@ export function SocialSidebar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Follow us on ${item.name}`}
-            className={`group relative flex h-9 w-9 items-center justify-center rounded-md text-[var(--color-text-muted)] transition-colors duration-150 hover:bg-[var(--color-surface-raised)]/70 ${item.colorHover} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]`}
+            className={`group relative flex h-8 w-8 items-center justify-center rounded-md text-[var(--color-text-muted)] transition-colors duration-150 hover:bg-[var(--color-surface-raised)] ${item.colorHover} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]`}
           >
-            <Icon className="h-4 w-4" />
+            <Icon className="h-5 w-5" />
             <span className="pointer-events-none absolute left-full ml-3 whitespace-nowrap rounded-md bg-[var(--color-text-primary)] px-2 py-1 text-xs font-medium text-[var(--color-surface)] opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100">
               {item.name}
             </span>
