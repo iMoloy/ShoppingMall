@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { AddToCartButton } from '@/components/product/add-to-cart-button'
+import { ProductReviews } from '@/components/product/product-reviews'
+import { RecentlyViewed } from '@/components/product/recently-viewed'
 import type { ApiSuccess, ProductDetail } from '@shoppingmall/shared-types'
 import type { PageParams } from '@/types'
 
@@ -385,6 +387,12 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
         </div>
       </div>
+
+      {/* Verified Client Reviews & Ratings Breakdown */}
+      <ProductReviews productName={product.name} />
+
+      {/* Recently Viewed Shelf */}
+      <RecentlyViewed currentProduct={product} />
     </div>
   )
 }
