@@ -2,49 +2,44 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { ThemeToggle } from '@/components/theme/theme-toggle'
+import { CurrencySelector } from '@/components/layout/currency-selector'
+import { HeaderSearch } from '@/components/layout/header-search'
 import { useCartCount, useCartStore } from '@/store/cart'
+import { useWishlistCount } from '@/store/wishlist'
 
 const CATEGORY_LINKS = [
   { label: 'All Products', href: '/products' },
   { label: 'Bags', href: '/products?category=bags' },
   { label: 'Watches', href: '/products?category=watches' },
+  { label: 'Lookbook', href: '/lookbook' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]
 
 export function Navbar() {
   const pathname = usePathname()
-  const router = useRouter()
   const cartCount = useCartCount()
+  const wishlistCount = useWishlistCount()
   const openCart = useCartStore((s) => s.openCart)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-
-  function handleSearch(e: React.FormEvent) {
-    e.preventDefault()
-    const query = searchQuery.trim()
-    if (!query) {
-      router.push('/products')
-      return
-    }
-    router.push(`/products?q=${encodeURIComponent(query)}`)
-    setMenuOpen(false)
-  }
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur-md">
-      {/* Top Announcement Bar */}
-      <div className="bg-[var(--color-text-primary)] px-4 py-1.5 text-center text-[11px] font-medium tracking-wider uppercase text-[var(--color-surface)]">
-        <div className="mx-auto flex max-w-7xl items-center justify-between sm:justify-center sm:gap-6">
-          <span>Premium Sale — Up to 35% Off Selected Items</span>
-          <Link
-            href="/products"
-            className="hidden underline underline-offset-4 opacity-90 transition-opacity hover:opacity-100 sm:inline"
-          >
-            Shop Now →
-          </Link>
+      {/* Top Announcement Bar with Currency Switcher */}
+      <div className="bg-[var(--color-text-primary)] px-4 py-1.5 text-[11px] font-medium uppercase tracking-wider text-[var(--color-surface)]">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
+          <div className="flex items-center gap-4">
+            <span>Premium Sale — Up to 35% Off Selected Items</span>
+            <Link
+              href="/products"
+              className="hidden underline underline-offset-4 opacity-90 transition-opacity hover:opacity-100 sm:inline"
+            >
+              Shop Now →
+            </Link>
+          </div>
+          <CurrencySelector variant="minimal" />
         </div>
       </div>
 
@@ -61,24 +56,10 @@ export function Navbar() {
             {menuOpen ? <XIcon /> : <MenuIcon />}
           </button>
 
-          {/* Interactive Search Bar on Desktop */}
-          <form onSubmit={handleSearch} className="relative hidden items-center sm:flex">
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search products..."
-              aria-label="Search catalog"
-              className="h-9 w-44 rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)]/70 pl-8 pr-3 text-xs text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] transition-all duration-150 focus:w-60 focus:border-[var(--color-text-primary)] focus:outline-none"
-            />
-            <button
-              type="submit"
-              aria-label="Submit search"
-              className="absolute left-2.5 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
-            >
-              <SearchIcon />
-            </button>
-          </form>
+          {/* Interactive Predictive Search Bar on Desktop */}
+          <div className="hidden sm:block">
+            <HeaderSearch />
+          </div>
         </div>
 
         {/* Center: Brand Logo */}
@@ -107,6 +88,21 @@ export function Navbar() {
             <OrderIcon />
           </Link>
 
+          {/* Wishlist Link */}
+          <Link
+            href="/wishlist"
+            aria-label={`Wishlist, ${wishlistCount} item${wishlistCount !== 1 ? 's' : ''}`}
+            className="relative flex h-10 w-10 items-center justify-center rounded-md text-[var(--color-text-muted)] transition-colors duration-150 hover:bg-[var(--color-surface-raised)] hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]"
+            title="My Wishlist"
+          >
+            <HeartNavIcon />
+            {wishlistCount > 0 && (
+              <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-md bg-[var(--color-brand-600)] px-1 text-[10px] font-bold leading-none text-white">
+                {wishlistCount > 99 ? '99+' : wishlistCount}
+              </span>
+            )}
+          </Link>
+
           {/* Cart trigger button */}
           <button
             onClick={openCart}
@@ -115,7 +111,7 @@ export function Navbar() {
           >
             <CartIcon />
             {cartCount > 0 && (
-              <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--color-text-primary)] px-1 text-[10px] font-bold leading-none text-[var(--color-surface)]">
+              <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-md bg-[var(--color-text-primary)] px-1 text-[10px] font-bold leading-none text-[var(--color-surface)]">
                 {cartCount > 99 ? '99+' : cartCount}
               </span>
             )}
@@ -155,24 +151,10 @@ export function Navbar() {
       {/* Mobile Drawer Menu */}
       {menuOpen && (
         <div className="border-t border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-4 lg:hidden">
-          {/* Mobile Search input */}
-          <form onSubmit={handleSearch} className="relative mb-4 flex items-center">
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search products..."
-              aria-label="Search catalog"
-              className="h-10 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)] pl-9 pr-3 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-1 focus:ring-[var(--color-text-primary)]"
-            />
-            <button
-              type="submit"
-              aria-label="Submit search"
-              className="absolute left-3 text-[var(--color-text-muted)]"
-            >
-              <SearchIcon />
-            </button>
-          </form>
+          {/* Mobile Search input with predictive results */}
+          <div className="mb-4">
+            <HeaderSearch onSelect={() => setMenuOpen(false)} />
+          </div>
 
           <ul className="flex flex-col gap-2">
             {CATEGORY_LINKS.map((link) => (
@@ -214,6 +196,25 @@ export function Navbar() {
   )
 }
 
+function HeartNavIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+    </svg>
+  )
+}
+
 function CartIcon() {
   return (
     <svg
@@ -231,26 +232,6 @@ function CartIcon() {
       <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
       <path d="M3 6h18" />
       <path d="M16 10a4 4 0 0 1-8 0" />
-    </svg>
-  )
-}
-
-function SearchIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
     </svg>
   )
 }
