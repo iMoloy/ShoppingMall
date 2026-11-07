@@ -2,21 +2,22 @@
 
 ## Tech Stack
 
-| Layer | Choice |
-|---|---|
-| Frontend | Next.js 15 (App Router) + TypeScript |
-| Styling | Tailwind CSS v4 (CSS-based config) |
-| Backend | NestJS + TypeScript |
-| Database | PostgreSQL + Prisma ORM |
-| Auth | Raw JWT — `jsonwebtoken` + `bcrypt` |
-| Validation | Zod (frontend) + class-validator (NestJS) |
-| Monorepo | Turborepo + pnpm workspaces |
-| Images | ImgBB API |
-| Payment | SSLCommerz (BD) + Stripe (International) |
-| Email | Nodemailer / Resend |
-| Logging | pino (structured JSON, no console.log in prod) |
-| Error Tracking | Sentry (frontend + backend) |
-| Deployment | Vercel (Next.js) + Railway (NestJS + PostgreSQL) |
+| Layer            | Choice                                                          |
+| ---------------- | --------------------------------------------------------------- |
+| Frontend         | Next.js 16 (Turbopack, App Router, React 19 RSC) + TypeScript   |
+| Styling          | Tailwind CSS v4 (CSS variables, Dark mode, Semi-rounded)        |
+| State Management | Zustand with `persist` middleware                               |
+| Backend          | NestJS + TypeScript (Modular Architecture)                      |
+| Database         | PostgreSQL + Prisma ORM                                         |
+| Auth             | Raw JWT — `jsonwebtoken` + `bcrypt` with Refresh Token Rotation |
+| Validation       | Zod (frontend) + class-validator (NestJS)                       |
+| Monorepo         | Turborepo + pnpm workspaces                                     |
+| Images           | ImgBB API / Unsplash CDN                                        |
+| Payment          | SSLCommerz (BD) + Stripe (International)                        |
+| Email            | Nodemailer / Resend                                             |
+| Logging          | pino (structured JSON, no console.log in prod)                  |
+| Error Tracking   | Sentry (frontend + backend)                                     |
+| Deployment       | Vercel (Next.js) + Railway (NestJS + PostgreSQL)                |
 
 ---
 
@@ -25,34 +26,43 @@
 ```
 ShoppingMall/
 ├── apps/
-│   ├── web/                          # Next.js 15 frontend
+│   ├── web/                          # Next.js 16 frontend
 │   │   ├── app/
 │   │   │   ├── (auth)/
 │   │   │   │   ├── login/page.tsx
 │   │   │   │   └── register/page.tsx
 │   │   │   ├── (shop)/
-│   │   │   │   ├── page.tsx                 # Homepage / hero
+│   │   │   │   ├── page.tsx                 # Homepage / hero seasonal slider
+│   │   │   │   ├── hero-slider.tsx          # Autoplay buttonless Summer & Winter slider
 │   │   │   │   ├── products/
-│   │   │   │   │   ├── page.tsx             # Product listing + filters
-│   │   │   │   │   └── [slug]/page.tsx      # Product detail
+│   │   │   │   │   ├── page.tsx             # Product listing + faceted catalog filters
+│   │   │   │   │   ├── catalog-filters.tsx
+│   │   │   │   │   └── [slug]/page.tsx      # PDP (Zoom, Lightbox, Urgency, Reviews, Size)
 │   │   │   │   ├── cart/page.tsx
-│   │   │   │   └── checkout/page.tsx
-│   │   │   ├── (dashboard)/
-│   │   │   │   ├── layout.tsx               # Admin sidebar layout
-│   │   │   │   ├── dashboard/page.tsx
+│   │   │   │   ├── checkout/page.tsx        # 3-stage luxury checkout simulator
+│   │   │   │   ├── wishlist/page.tsx        # Wishlist dossier & "Move to Bag"
+│   │   │   │   ├── lookbook/page.tsx        # Editorial runway lookbook with hotspot pins
+│   │   │   │   ├── tracking/page.tsx        # Live 5-stage shipment order tracking
+│   │   │   │   ├── orders/page.tsx          # Customer order history
+│   │   │   │   ├── stores/page.tsx
+│   │   │   │   └── [content-pages]/         # sizing-guide, sustainability, press, returns, shipping, cookies, terms, privacy
+│   │   │   ├── dashboard/
+│   │   │   │   ├── layout.tsx               # Admin operations layout
+│   │   │   │   ├── page.tsx                 # Atelier revenue telemetry & stock alert banner
 │   │   │   │   ├── products/
-│   │   │   │   │   ├── page.tsx             # Product table + CRUD
-│   │   │   │   │   └── new/page.tsx
-│   │   │   │   └── orders/page.tsx
-│   │   │   ├── layout.tsx                   # Root layout (ThemeProvider)
+│   │   │   │   │   ├── page.tsx             # Inventory SKU management & search
+│   │   │   │   │   └── new/page.tsx         # Add new product form
+│   │   │   │   └── orders/page.tsx          # Order dispatch & fulfillment tracker
+│   │   │   ├── layout.tsx                   # Root layout (ThemeProvider, CartDrawer, Currency)
 │   │   │   ├── loading.tsx
 │   │   │   ├── error.tsx
 │   │   │   └── not-found.tsx
 │   │   ├── components/
-│   │   │   ├── ui/                          # Button, Input, Badge, Modal, Toast, Skeleton
-│   │   │   ├── layout/                      # Navbar, Footer, MobileMenu
-│   │   │   ├── product/                     # ProductCard, ProductGrid, ProductFilters
-│   │   │   ├── cart/                        # CartDrawer, CartItem
+│   │   │   ├── ui/                          # Button, Input, Badge, Modal, Toast, Skeleton, Newsletter
+│   │   │   ├── layout/                      # Navbar, Footer, HeaderSearch, CurrencySelector
+│   │   │   ├── product/                     # ProductCard, ProductGallery, StockUrgencyTimer, ProductSizePicker, SizeCalculatorModal, ProductReviews, RecentlyViewed, QuickViewModal
+│   │   │   ├── cart/                        # CartDrawer, CartItem, FreeShippingBar, PromoCode
+│   │   │   ├── dashboard/                   # DashboardShell
 │   │   │   └── theme/                       # ThemeToggle
 │   │   ├── lib/
 │   │   │   ├── api.ts                       # Typed fetch wrapper
@@ -60,9 +70,11 @@ ShoppingMall/
 │   │   │   └── validations.ts               # Zod schemas
 │   │   ├── actions/                         # Server Actions
 │   │   ├── store/
-│   │   │   └── cart.ts                      # Zustand cart store
+│   │   │   ├── cart.ts                      # Zustand cart store with promo & shipping calc
+│   │   │   ├── currency.ts                  # Zustand multi-currency store (USD, EUR, GBP, BDT, JPY)
+│   │   │   └── wishlist.ts                  # Zustand persistent wishlist store
 │   │   ├── types/
-│   │   └── middleware.ts                    # JWT guard on protected routes
+│   │   └── proxy.ts                         # Route protection (Next.js 16 convention)
 │   │
 │   └── api/                          # NestJS backend
 │       ├── src/
@@ -76,7 +88,10 @@ ShoppingMall/
 │       │   ├── products/
 │       │   ├── categories/
 │       │   ├── cart/
+│       │   ├── wishlist/
+│       │   ├── reviews/
 │       │   ├── orders/
+│       │   ├── tracking/
 │       │   ├── uploads/
 │       │   ├── health/                      # GET /api/health
 │       │   ├── common/
@@ -96,7 +111,7 @@ ShoppingMall/
 ├── packages/
 │   └── shared-types/                  # Shared TS types (enums, DTOs)
 │       └── src/
-│           ├── enums.ts               # Role, OrderStatus
+│           ├── enums.ts               # Role, OrderStatus, Currency
 │           ├── api/                   # Request/Response shapes
 │           └── index.ts
 │
@@ -133,6 +148,8 @@ model User {
   updatedAt     DateTime       @updatedAt
   orders        Order[]
   cart          CartItem[]
+  wishlist      WishlistItem[]
+  reviews       Review[]
   addresses     Address[]
   refreshTokens RefreshToken[]
 
@@ -173,20 +190,24 @@ model Category {
 }
 
 model Product {
-  id          String      @id @default(cuid())
+  id          String         @id @default(cuid())
   name        String
-  slug        String      @unique
+  slug        String         @unique
   description String
-  price       Decimal     @db.Decimal(10, 2)
-  stock       Int         @default(0)
-  images      String[]    # ImgBB CDN URLs array
+  price       Decimal        @db.Decimal(10, 2)
+  stock       Int            @default(0)
+  images      String[]       # CDN image URLs array
+  season      String?        # "summer" | "winter"
+  isFeatured  Boolean        @default(false)
   categoryId  String
-  category    Category    @relation(fields: [categoryId], references: [id])
+  category    Category       @relation(fields: [categoryId], references: [id])
   cartItems   CartItem[]
+  wishlist    WishlistItem[]
+  reviews     Review[]
   orderItems  OrderItem[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  deletedAt   DateTime?   # Soft delete — never hard delete
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  deletedAt   DateTime?      # Soft delete — never hard delete
 
   @@index([categoryId])
   @@index([slug])
@@ -204,13 +225,42 @@ model CartItem {
   @@unique([userId, productId])
 }
 
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@index([userId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  rating    Int      # 1 to 5 stars
+  comment   String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([productId])
+  @@index([userId])
+}
+
 model Order {
   id              String      @id @default(cuid())
   userId          String
   status          OrderStatus @default(PENDING)
   total           Decimal     @db.Decimal(10, 2)  # Calculated server-side
+  currency        String      @default("USD")     # USD, EUR, GBP, BDT, JPY
   addressSnapshot Json        # Address at time of order (immutable)
-  paymentRef      String?     # SSLCommerz / Stripe reference
+  paymentRef      String?     # SSLCommerz / Stripe / COD reference
+  trackingNumber  String?     # Waybill carrier number
+  courier         String?     # DHL, FedEx, RedX, Pathao
   idempotencyKey  String      @unique  # Prevent duplicate orders
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
@@ -341,44 +391,57 @@ Button variants:
 
 ## Execution Sections
 
-### FRONTEND
+### FRONTEND (100% Complete)
 
-| # | Section | Status |
-|---|---|---|
-| F1 | Monorepo init (Turborepo + pnpm workspaces + shared-types) | ✅ |
-| F2 | Next.js scaffold + Tailwind v4 + dark mode setup | ✅ |
-| F3 | Base layout — Navbar, Footer, ThemeToggle, MobileMenu | ✅ |
-| F4 | UI primitives — Button, Input, Badge, Skeleton, Toast, Modal | ✅ |
-| F5 | Auth pages — Login, Register (forms + Zod validation) | ✅ |
-| F6 | Homepage — Hero section, category quick-links | ✅ |
-| F7 | Product listing page — grid, filters, skeleton loading | ✅ |
-| F8 | Product detail page — images, stock badge, Add to Cart | ✅ |
-| F9 | Cart — Zustand store + CartDrawer slide-in + Cart Page | ✅ |
-| F10 | Checkout — multi-step form (address → summary → confirm) | ✅ |
-| F11 | Order history page (buyer) | ✅ |
-| F12 | Admin dashboard — layout, product CRUD, order management | ✅ |
-| F13 | proxy.ts — route protection (Next.js 16 convention) | ✅ |
-| F14 | SEO — generateMetadata per page, not-found, error, loading | ✅ |
+| #   | Section                                                                          | Status |
+| --- | -------------------------------------------------------------------------------- | ------ |
+| F1  | Monorepo init (Turborepo + pnpm workspaces + shared-types)                       | ✅     |
+| F2  | Next.js scaffold + Tailwind v4 + dark mode setup                                 | ✅     |
+| F3  | Base layout — Navbar, Footer, ThemeToggle, MobileMenu                            | ✅     |
+| F4  | UI primitives — Button, Input, Badge, Skeleton, Toast, Modal                     | ✅     |
+| F5  | Auth pages — Login, Register (forms + Zod validation)                            | ✅     |
+| F6  | Homepage — Hero section, category quick-links                                    | ✅     |
+| F7  | Product listing page — grid, filters, skeleton loading                           | ✅     |
+| F8  | Product detail page — images, stock badge, Add to Cart                           | ✅     |
+| F9  | Cart — Zustand store + CartDrawer slide-in + Cart Page                           | ✅     |
+| F10 | Checkout — multi-step form (address → summary → confirm)                         | ✅     |
+| F11 | Order history page (buyer)                                                       | ✅     |
+| F12 | Admin dashboard — layout, product CRUD, order management                         | ✅     |
+| F13 | proxy.ts — route protection (Next.js 16 convention)                              | ✅     |
+| F14 | SEO — generateMetadata per page, not-found, error, loading                       | ✅     |
+| F15 | Instant Predictive Search Dropdown (`HeaderSearch` in Navbar)                    | ✅     |
+| F16 | PDP Ultra-Detail Zoom Lens & Fullscreen Lightbox (`ProductGallery`)              | ✅     |
+| F17 | Low-Stock Urgency & Same-Day Dispatch Countdown Timer (`StockUrgencyTimer`)      | ✅     |
+| F18 | Interactive Fit Calculator & Size Selector Modal (`ProductSizePicker`)           | ✅     |
+| F19 | Multi-Currency Engine (USD, EUR, GBP, BDT, JPY) (`useCurrencyStore`)             | ✅     |
+| F20 | Customer Reviews Breakdown & Recently Viewed History (`RecentlyViewed`)          | ✅     |
+| F21 | Persistent Wishlist System with dedicated view (`/wishlist`, `useWishlistStore`) | ✅     |
+| F22 | Editorial Runway Lookbook with Interactive Hotspot Pins (`/lookbook`)            | ✅     |
+| F23 | 3-Stage Luxury Checkout Simulator (`/checkout`)                                  | ✅     |
+| F24 | Live 5-Stage Order Tracking Dossier & Printable Invoice (`/tracking`)            | ✅     |
+| F25 | Admin Atelier Operations Console & Revenue Telemetry (`/dashboard`)              | ✅     |
+| F26 | Buttonless Seasonal Hero Auto-Slider (Summer & Winter 2026)                      | ✅     |
+| F27 | Strict Semi-Rounded Design System Enforcement (Zero `rounded-full`)              | ✅     |
 
 ### BACKEND
 
-| # | Section | Status |
-|---|---|---|
-| B1 | NestJS scaffold + project structure | ⬜ |
-| B2 | Prisma schema + initial migration + seed | ⬜ |
-| B3 | Global setup — Helmet, CORS, Throttler, pino logger, exception filter, response interceptor | ⬜ |
-| B4 | Health check endpoint | ⬜ |
-| B5 | Auth module — register, login, refresh, logout, JWT guard | ⬜ |
-| B6 | Users module — profile, address management | ⬜ |
-| B7 | Categories module — CRUD (admin only) | ⬜ |
-| B8 | Products module — listing (cursor pagination, full-text search), detail, admin CRUD | ⬜ |
-| B9 | Uploads module — ImgBB integration | ⬜ |
-| B10 | Cart module — add, update, remove, sync | ⬜ |
-| B11 | Orders module — create (atomic transaction), list, status update | ⬜ |
-| B12 | Payment module — SSLCommerz + Stripe webhook handling (idempotent) | ⬜ |
-| B13 | Email module — Nodemailer/Resend templates | ⬜ |
-| B14 | Audit log — admin action tracking | ⬜ |
-| B15 | Cleanup cron — expired refresh tokens | ⬜ |
+| #   | Section                                  | Description                                                                     | Status |
+| --- | ---------------------------------------- | ------------------------------------------------------------------------------- | ------ |
+| B1  | NestJS scaffold + project structure      | `apps/api` NestJS project setup with TypeScript, ESLint, Prettier               | ✅     |
+| B2  | Prisma schema + initial migration + seed | PostgreSQL / Prisma client setup, data models, initial migrations, seed data    | ✅     |
+| B3  | Global setup & security                  | Helmet, CORS, Throttler rate limiting, pino structured logger, exception filter | ✅     |
+| B4  | Health check endpoint                    | `GET /api/v1/health` with database ping and uptime metrics                      | ✅     |
+| B5  | Auth module                              | Registration, login, refresh token rotation, logout, JWT passport guards        | ✅     |
+| B6  | Users module                             | Profile management, shipping address book                                       | ⬜     |
+| B7  | Categories module                        | Category listing and admin CRUD                                                 | ⬜     |
+| B8  | Products module                          | Cursor pagination, full-text search, category filter, admin product CRUD        | ⬜     |
+| B9  | Uploads module                           | Image uploads to ImgBB / Cloud CDN                                              | ⬜     |
+| B10 | Cart module                              | User cart persistence, sync with guest cart                                     | ⬜     |
+| B11 | Wishlist module                          | User wishlist persistence and toggles                                           | ⬜     |
+| B12 | Reviews module                           | Verified purchaser ratings and reviews                                          | ⬜     |
+| B13 | Orders & Tracking module                 | Atomic order creation, idempotency key, status milestones, waybill tracking     | ⬜     |
+| B14 | Payment module                           | SSLCommerz (BD) + Stripe webhook integration                                    | ⬜     |
+| B15 | Audit log & Maintenance                  | Admin audit log trails and expired token cleanup cron                           | ⬜     |
 
 ---
 
