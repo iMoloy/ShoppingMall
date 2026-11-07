@@ -12,15 +12,7 @@ export const metadata: Metadata = {
     'Discover the Summer & Winter Collections 2026. Up to 40% off curated clothing, bags, watches, and modern fashion essentials.',
 }
 
-const BRAND_PARTNERS = [
-  'ADIDAS',
-  'ASOS',
-  'BERSHKA',
-  'LEVI\'S',
-  'NIKE',
-  'PULL&BEAR',
-  'ZARA',
-]
+const BRAND_PARTNERS = ['ADIDAS', 'ASOS', 'BERSHKA', "LEVI'S", 'NIKE', 'PULL&BEAR', 'ZARA']
 
 const FEATURED_PRODUCTS: ProductListItem[] = [
   {
@@ -189,7 +181,8 @@ export default function HomePage() {
                     Bespoke Bags
                   </h3>
                   <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-muted)]">
-                    Full-grain leather and structured canvas silhouettes tailored for daily movement.
+                    Full-grain leather and structured canvas silhouettes tailored for daily
+                    movement.
                   </p>
                 </div>
                 <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-lg">
@@ -284,7 +277,7 @@ export default function HomePage() {
         </div>
 
         {/* 4-column 3:4 aspect ratio fashion grid */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 sm:gap-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
           {FEATURED_PRODUCTS.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -316,7 +309,7 @@ export default function HomePage() {
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute left-3 top-3 rounded bg-[var(--color-surface)]/90 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm">
+                <div className="bg-[var(--color-surface)]/90 absolute left-3 top-3 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm">
                   {tile.tag}
                 </div>
               </div>
@@ -390,15 +383,15 @@ export default function HomePage() {
       <section className="mx-auto w-full max-w-7xl px-4 sm:px-6">
         <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-8 sm:p-14">
           <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-            <span className="rounded-md bg-[var(--color-brand-600)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[var(--color-brand-600)]">
+            <span className="bg-[var(--color-brand-600)]/10 rounded-md px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[var(--color-brand-600)]">
               Exclusive Access
             </span>
             <h2 className="mt-4 text-2xl font-bold uppercase tracking-tight text-[var(--color-text-primary)] sm:text-4xl">
               Get -15% On Your First Purchase
             </h2>
             <p className="mt-3 text-xs leading-relaxed text-[var(--color-text-muted)] sm:text-sm">
-              Subscribe to receive private invitations to runway sales, limited drops, and
-              curated styling edits directly to your inbox.
+              Subscribe to receive private invitations to runway sales, limited drops, and curated
+              styling edits directly to your inbox.
             </p>
             <div className="mt-8 w-full max-w-md">
               <NewsletterForm />

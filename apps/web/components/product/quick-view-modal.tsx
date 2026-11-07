@@ -136,7 +136,7 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
         <button
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute right-3.5 top-3.5 z-20 flex h-9 w-9 items-center justify-center rounded-md bg-[var(--color-surface)]/80 text-[var(--color-text-muted)] backdrop-blur-md transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]"
+          className="bg-[var(--color-surface)]/80 absolute right-3.5 top-3.5 z-20 flex h-9 w-9 items-center justify-center rounded-md text-[var(--color-text-muted)] backdrop-blur-md transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +170,7 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
               Editorial Studio Photo
             </div>
           )}
-          <div className="absolute bottom-3 left-3 rounded bg-[var(--color-surface)]/90 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] backdrop-blur-sm">
+          <div className="bg-[var(--color-surface)]/90 absolute bottom-3 left-3 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] backdrop-blur-sm">
             {product.category.name}
           </div>
         </div>
@@ -284,7 +284,7 @@ export function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps
           </div>
 
           {/* Action CTAs */}
-          <div className="mt-6 flex flex-col gap-3 pt-4 border-t border-[var(--color-border)]">
+          <div className="mt-6 flex flex-col gap-3 border-t border-[var(--color-border)] pt-4">
             <Button
               variant="primary"
               size="lg"

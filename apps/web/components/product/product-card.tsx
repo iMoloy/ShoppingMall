@@ -125,14 +125,14 @@ export function ProductCard({ product }: ProductCardProps) {
 
           {/* Badges: Out of stock or New */}
           {!inStock ? (
-            <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-surface)]/75 backdrop-blur-[1px]">
+            <div className="bg-[var(--color-surface)]/75 absolute inset-0 flex items-center justify-center backdrop-blur-[1px]">
               <Badge variant="muted" className="text-xs font-semibold uppercase">
                 Out of stock
               </Badge>
             </div>
           ) : (
             <div className="absolute left-2.5 top-2.5">
-              <span className="rounded bg-[var(--color-surface)]/90 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm">
+              <span className="bg-[var(--color-surface)]/90 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm">
                 New
               </span>
             </div>
@@ -143,7 +143,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <button
           onClick={handleToggleWishlist}
           aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-          className={`absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-md bg-[var(--color-surface)]/90 text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm transition-colors duration-150 hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)] ${
+          className={`bg-[var(--color-surface)]/90 absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-md text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm transition-colors duration-150 hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)] ${
             isWishlisted ? 'text-red-500' : 'text-[var(--color-text-muted)]'
           }`}
         >
@@ -152,11 +152,11 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Floating Quick Action Buttons on Hover (Bottom of image) */}
         {inStock && (
-          <div className="absolute inset-x-2 bottom-2 flex items-center gap-1.5 translate-y-2 opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
+          <div className="absolute inset-x-2 bottom-2 flex translate-y-2 items-center gap-1.5 opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
             <button
               type="button"
               onClick={handleOpenQuickView}
-              className="flex h-9 flex-1 items-center justify-center gap-1 rounded border border-[var(--color-border)] bg-[var(--color-surface)]/95 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm transition-colors hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]"
+              className="bg-[var(--color-surface)]/95 flex h-9 flex-1 items-center justify-center gap-1 rounded border border-[var(--color-border)] text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm backdrop-blur-sm transition-colors hover:bg-[var(--color-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]"
             >
               <EyeIcon />
               <span>Quick View</span>

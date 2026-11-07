@@ -39,7 +39,7 @@ const SLIDES: SlideData[] = [
     id: 'winter-2026',
     seasonTag: 'Winter Collection 2026',
     discountBadge: 'Up to 40% Off',
-    title: "Winter Wool, Cashmere & Overcoat Drop",
+    title: 'Winter Wool, Cashmere & Overcoat Drop',
     description:
       'Architectural virgin wool trench coats, heavy gauge cashmere knitwear, and structured winter silhouettes crafted for cold-weather elegance.',
     primaryCta: { label: 'Shop Winter Drop', href: '/products?category=clothing' },
@@ -88,10 +88,10 @@ export function HeroSlider() {
           </div>
 
           {/* Heading with smooth crossfade */}
-          <div className="min-h-[72px] sm:min-h-[110px] lg:min-h-[130px] flex items-center">
+          <div className="flex min-h-[72px] items-center sm:min-h-[110px] lg:min-h-[130px]">
             <h1
               key={currentSlide.id}
-              className="animate-in fade-in slide-in-from-bottom-2 duration-700 font-serif text-2xl font-extrabold uppercase leading-[1.12] tracking-tight text-[var(--color-text-primary)] sm:text-4xl lg:text-5xl"
+              className="animate-in fade-in slide-in-from-bottom-2 font-serif text-2xl font-extrabold uppercase leading-[1.12] tracking-tight text-[var(--color-text-primary)] duration-700 sm:text-4xl lg:text-5xl"
             >
               {currentSlide.title}
             </h1>
@@ -100,7 +100,7 @@ export function HeroSlider() {
           {/* Description */}
           <p
             key={`desc-${currentSlide.id}`}
-            className="animate-in fade-in duration-700 mt-3 text-xs leading-relaxed text-[var(--color-text-muted)] sm:text-sm"
+            className="animate-in fade-in mt-3 text-xs leading-relaxed text-[var(--color-text-muted)] duration-700 sm:text-sm"
           >
             {currentSlide.description}
           </p>
@@ -122,7 +122,7 @@ export function HeroSlider() {
             <div
               key={slide.id}
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                idx === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                idx === currentIndex ? 'z-10 opacity-100' : 'pointer-events-none z-0 opacity-0'
               }`}
             >
               <Image
@@ -133,11 +133,11 @@ export function HeroSlider() {
                 sizes="(max-width: 768px) 100vw, 30vw"
                 className="object-cover"
               />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 rounded-lg bg-[var(--color-surface)]/85 p-2 backdrop-blur-md">
+              <div className="bg-[var(--color-surface)]/85 absolute bottom-2.5 left-2.5 right-2.5 rounded-lg p-2 backdrop-blur-md">
                 <p className="text-[9px] font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
                   {slide.badgeTag}
                 </p>
-                <p className="text-[11px] font-semibold text-[var(--color-text-primary)] truncate">
+                <p className="truncate text-[11px] font-semibold text-[var(--color-text-primary)]">
                   {slide.badgeTitle}
                 </p>
               </div>
@@ -147,7 +147,7 @@ export function HeroSlider() {
       </div>
 
       {/* Bottom Stats Inside Main Hero */}
-      <div className="mt-6 grid grid-cols-3 border-t border-[var(--color-border)]/70 pt-5 text-center sm:text-left">
+      <div className="border-[var(--color-border)]/70 mt-6 grid grid-cols-3 border-t pt-5 text-center sm:text-left">
         <div>
           <p className="text-lg font-bold text-[var(--color-text-primary)] sm:text-xl">38+</p>
           <p className="text-[10px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">

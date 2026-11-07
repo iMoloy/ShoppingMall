@@ -39,8 +39,13 @@ export default function ReturnsPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Returns &amp; Exchanges</span>
       </nav>
@@ -54,8 +59,8 @@ export default function ReturnsPage() {
           Complimentary 30-Day Returns
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
-          We want you to feel complete confidence in every piece you acquire. If an item does not meet
-          your expectations, return or exchange it with zero stress.
+          We want you to feel complete confidence in every piece you acquire. If an item does not
+          meet your expectations, return or exchange it with zero stress.
         </p>
       </div>
 
@@ -93,22 +98,22 @@ export default function ReturnsPage() {
         </h3>
         <ul className="mt-4 space-y-3 text-xs text-[var(--color-text-muted)]">
           <li className="flex items-center gap-2">
-            <span className="text-emerald-500 font-bold">✓</span>
+            <span className="font-bold text-emerald-500">✓</span>
             Items must be in unworn, unwashed, and original condition.
           </li>
           <li className="flex items-center gap-2">
-            <span className="text-emerald-500 font-bold">✓</span>
+            <span className="font-bold text-emerald-500">✓</span>
             All designer tags, protective plastic films, dust bags, and boxes must be included.
           </li>
           <li className="flex items-center gap-2">
-            <span className="text-emerald-500 font-bold">✓</span>
+            <span className="font-bold text-emerald-500">✓</span>
             Watches must not have been resized or had links removed.
           </li>
         </ul>
       </div>
 
       {/* Action Footer */}
-      <div className="mt-12 flex flex-wrap justify-between items-center gap-4 border-t border-[var(--color-border)] pt-8">
+      <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-border)] pt-8">
         <div>
           <h4 className="text-sm font-bold uppercase text-[var(--color-text-primary)]">
             Ready to request a return?

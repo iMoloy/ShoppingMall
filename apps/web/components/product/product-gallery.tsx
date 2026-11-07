@@ -83,7 +83,7 @@ export function ProductGallery({ images, productName, inStock }: Props) {
         )}
 
         {/* Zoom Hint / Fullscreen trigger pill */}
-        <div className="pointer-events-none absolute bottom-3 right-3 flex items-center gap-1.5 rounded-md bg-[var(--color-surface)]/85 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] shadow-sm backdrop-blur-md opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <div className="bg-[var(--color-surface)]/85 pointer-events-none absolute bottom-3 right-3 flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] opacity-0 shadow-sm backdrop-blur-md transition-opacity duration-200 group-hover:opacity-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="12"
@@ -106,7 +106,7 @@ export function ProductGallery({ images, productName, inStock }: Props) {
 
         {/* Sold out overlay */}
         {!inStock && (
-          <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-surface)]/70 backdrop-blur-[2px]">
+          <div className="bg-[var(--color-surface)]/70 absolute inset-0 flex items-center justify-center backdrop-blur-[2px]">
             <Badge variant="muted" className="text-sm font-semibold uppercase">
               Out of Stock
             </Badge>
@@ -147,7 +147,7 @@ export function ProductGallery({ images, productName, inStock }: Props) {
           role="dialog"
           aria-modal="true"
           aria-label="High-resolution image viewer"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-md sm:p-8"
         >
           {/* Close button */}
           <button
@@ -199,7 +199,10 @@ export function ProductGallery({ images, productName, inStock }: Props) {
 
           {/* Image caption footer */}
           <div className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-md bg-black/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md">
-            <span>{String(selectedIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}</span>
+            <span>
+              {String(selectedIndex + 1).padStart(2, '0')} /{' '}
+              {String(images.length).padStart(2, '0')}
+            </span>
             <span className="mx-2">&bull;</span>
             <span>{productName}</span>
           </div>

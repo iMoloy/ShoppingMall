@@ -38,7 +38,12 @@ export function CatalogFilters({ categories, totalCount }: Props) {
   function updateQuery(updates: Record<string, string | null>) {
     const params = new URLSearchParams(searchParams.toString())
     Object.entries(updates).forEach(([key, value]) => {
-      if (value === null || value === '' || value === 'all' || (key === 'sort' && value === 'featured')) {
+      if (
+        value === null ||
+        value === '' ||
+        value === 'all' ||
+        (key === 'sort' && value === 'featured')
+      ) {
         params.delete(key)
       } else {
         params.set(key, value)
@@ -58,13 +63,17 @@ export function CatalogFilters({ categories, totalCount }: Props) {
   }
 
   const hasActiveFilters = Boolean(
-    currentCategory || currentSort !== 'featured' || currentPrice !== 'all' || currentInStock || currentQuery,
+    currentCategory ||
+    currentSort !== 'featured' ||
+    currentPrice !== 'all' ||
+    currentInStock ||
+    currentQuery,
   )
 
   return (
     <div className="mb-8 flex flex-col gap-4">
       {/* Top Filter Bar: Categories & Sort */}
-      <div className="flex flex-col justify-between gap-4 border-b border-[var(--color-border)]/70 pb-4 lg:flex-row lg:items-center">
+      <div className="border-[var(--color-border)]/70 flex flex-col justify-between gap-4 border-b pb-4 lg:flex-row lg:items-center">
         {/* Category Pills */}
         <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           <button
@@ -97,12 +106,17 @@ export function CatalogFilters({ categories, totalCount }: Props) {
         {/* Right side controls: Count & Sort */}
         <div className="flex items-center justify-between gap-4 lg:justify-end">
           <span className="text-xs font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-            {isPending ? 'Updating...' : `${totalCount} curated piece${totalCount === 1 ? '' : 's'}`}
+            {isPending
+              ? 'Updating...'
+              : `${totalCount} curated piece${totalCount === 1 ? '' : 's'}`}
           </span>
 
           {/* Sort Selector */}
           <div className="flex items-center gap-2">
-            <label htmlFor="catalog-sort" className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+            <label
+              htmlFor="catalog-sort"
+              className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]"
+            >
               Sort:
             </label>
             <select
@@ -124,7 +138,7 @@ export function CatalogFilters({ categories, totalCount }: Props) {
       {/* Secondary Bar: Price Tiers & In-Stock Switch */}
       <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mr-1">
+          <span className="mr-1 text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
             Price:
           </span>
           {PRICE_TIERS.map((tier) => (
@@ -134,7 +148,7 @@ export function CatalogFilters({ categories, totalCount }: Props) {
               onClick={() => updateQuery({ price: tier.id })}
               className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
                 currentPrice === tier.id
-                  ? 'bg-[var(--color-surface-raised)] font-bold text-[var(--color-text-primary)] border border-[var(--color-text-primary)]'
+                  ? 'border border-[var(--color-text-primary)] bg-[var(--color-surface-raised)] font-bold text-[var(--color-text-primary)]'
                   : 'border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
               }`}
             >
@@ -145,7 +159,7 @@ export function CatalogFilters({ categories, totalCount }: Props) {
 
         <div className="flex items-center gap-4">
           {/* In-Stock Only Toggle */}
-          <label className="flex cursor-pointer items-center gap-2 select-none">
+          <label className="flex cursor-pointer select-none items-center gap-2">
             <input
               type="checkbox"
               checked={currentInStock}

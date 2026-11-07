@@ -11,8 +11,13 @@ export default function TermsPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Terms of Service</span>
       </nav>
@@ -36,8 +41,9 @@ export default function TermsPage() {
             1. Agreement to Terms
           </h2>
           <p className="mt-2">
-            By accessing Shopping Mall or placing an order through our platform, you agree to be bound by these Terms of Service.
-            All purchases constitute a binding contract under applicable consumer commercial laws.
+            By accessing Shopping Mall or placing an order through our platform, you agree to be
+            bound by these Terms of Service. All purchases constitute a binding contract under
+            applicable consumer commercial laws.
           </p>
         </section>
 
@@ -46,8 +52,9 @@ export default function TermsPage() {
             2. 100% Authenticity Guarantee
           </h2>
           <p className="mt-2">
-            Every product cataloged on Shopping Mall is guaranteed 100% genuine and original. Pieces are accompanied by an
-            individual serial reference code and certificate of authenticity where applicable.
+            Every product cataloged on Shopping Mall is guaranteed 100% genuine and original. Pieces
+            are accompanied by an individual serial reference code and certificate of authenticity
+            where applicable.
           </p>
         </section>
 
@@ -56,8 +63,9 @@ export default function TermsPage() {
             3. Pricing &amp; Payment
           </h2>
           <p className="mt-2">
-            All prices are listed in USD and exclude shipping unless order total qualifies for complimentary delivery.
-            We reserve the right to cancel orders in the rare event of typographical pricing errors, issuing an immediate full refund.
+            All prices are listed in USD and exclude shipping unless order total qualifies for
+            complimentary delivery. We reserve the right to cancel orders in the rare event of
+            typographical pricing errors, issuing an immediate full refund.
           </p>
         </section>
 
@@ -66,8 +74,9 @@ export default function TermsPage() {
             4. Warranty &amp; Limitation of Liability
           </h2>
           <p className="mt-2">
-            Timepieces are protected by a 2-year mechanical warranty. Leather goods include complimentary artisan stitching servicing.
-            Normal wear and tear or unauthorized third-party modifications void warranty coverage.
+            Timepieces are protected by a 2-year mechanical warranty. Leather goods include
+            complimentary artisan stitching servicing. Normal wear and tear or unauthorized
+            third-party modifications void warranty coverage.
           </p>
         </section>
 
@@ -76,8 +85,9 @@ export default function TermsPage() {
             5. Governing Law
           </h2>
           <p className="mt-2">
-            These Terms are governed by and construed under international commercial consumer law. Any dispute resolution
-            shall proceed through neutral arbitration prior to formal court proceedings.
+            These Terms are governed by and construed under international commercial consumer law.
+            Any dispute resolution shall proceed through neutral arbitration prior to formal court
+            proceedings.
           </p>
         </section>
       </div>

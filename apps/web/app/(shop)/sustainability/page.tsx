@@ -36,8 +36,13 @@ export default function SustainabilityPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Sustainability</span>
       </nav>
@@ -51,8 +56,8 @@ export default function SustainabilityPage() {
           Conscious Modern Luxury
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
-          True refinement lies in harmony with our planet. We reject fast-fashion obsolescence
-          in favor of small-batch artisanal production and traceable raw materials.
+          True refinement lies in harmony with our planet. We reject fast-fashion obsolescence in
+          favor of small-batch artisanal production and traceable raw materials.
         </p>
       </div>
 
@@ -66,7 +71,7 @@ export default function SustainabilityPage() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6 sm:p-10">
+        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent p-6 sm:p-10">
           <p className="text-sm font-semibold uppercase tracking-wider text-white">
             100% Traceable European Supply Chain
           </p>
@@ -99,7 +104,7 @@ export default function SustainabilityPage() {
       </div>
 
       {/* Call to action */}
-      <div className="mt-16 text-center border-t border-[var(--color-border)] pt-10">
+      <div className="mt-16 border-t border-[var(--color-border)] pt-10 text-center">
         <h3 className="text-xl font-bold uppercase text-[var(--color-text-primary)]">
           Invest in Longevity
         </h3>

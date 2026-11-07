@@ -26,7 +26,7 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur-md">
+    <header className="bg-[var(--color-surface)]/95 sticky top-0 z-40 w-full border-b border-[var(--color-border)] backdrop-blur-md">
       {/* Top Announcement Bar with Currency Switcher */}
       <div className="bg-[var(--color-text-primary)] px-4 py-1.5 text-[11px] font-medium uppercase tracking-wider text-[var(--color-surface)]">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -63,10 +63,7 @@ export function Navbar() {
         </div>
 
         {/* Center: Brand Logo */}
-        <Link
-          href="/"
-          className="group flex flex-col items-center justify-center text-center"
-        >
+        <Link href="/" className="group flex flex-col items-center justify-center text-center">
           <span className="text-lg font-bold uppercase tracking-[0.25em] text-[var(--color-text-primary)] transition-colors duration-150 group-hover:text-[var(--color-brand-600)] sm:text-xl">
             Shopping Mall
           </span>
@@ -128,7 +125,7 @@ export function Navbar() {
       </nav>
 
       {/* Desktop Sub-navigation category pills */}
-      <div className="hidden border-t border-[var(--color-border)]/60 bg-[var(--color-surface)] py-2 lg:block">
+      <div className="border-[var(--color-border)]/60 hidden border-t bg-[var(--color-surface)] py-2 lg:block">
         <ul className="mx-auto flex max-w-7xl items-center justify-center gap-8 px-6 text-xs font-semibold uppercase tracking-wider">
           {CATEGORY_LINKS.map((link) => (
             <li key={link.href}>
@@ -173,7 +170,7 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
-            <li className="mt-2 border-t border-[var(--color-border)] pt-2 flex flex-col gap-1">
+            <li className="mt-2 flex flex-col gap-1 border-t border-[var(--color-border)] pt-2">
               <Link
                 href="/orders"
                 onClick={() => setMenuOpen(false)}

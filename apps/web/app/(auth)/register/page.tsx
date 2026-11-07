@@ -68,7 +68,9 @@ function RegisterForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="mb-2">
-        <h1 className="text-xl font-semibold text-[var(--color-text-primary)]">Create an account</h1>
+        <h1 className="text-xl font-semibold text-[var(--color-text-primary)]">
+          Create an account
+        </h1>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">
           Join Shopping Mall to start ordering your favorite items.
         </p>

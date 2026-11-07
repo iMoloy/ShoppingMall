@@ -47,8 +47,13 @@ export default function StoresPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Stores &amp; Boutiques</span>
       </nav>
@@ -62,8 +67,8 @@ export default function StoresPage() {
           Flagship Boutiques
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
-          Touch the full-grain leather, experience the weight of surgical steel horology,
-          and receive personalized styling from our resident masters.
+          Touch the full-grain leather, experience the weight of surgical steel horology, and
+          receive personalized styling from our resident masters.
         </p>
       </div>
 
@@ -79,26 +84,28 @@ export default function StoresPage() {
                 <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
                   {s.city}
                 </span>
-                <span className="rounded-md bg-[var(--color-surface)] px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-primary)] border border-[var(--color-border)]">
+                <span className="rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-primary)]">
                   {s.neighborhood}
                 </span>
               </div>
               <h2 className="mt-3 text-xl font-bold uppercase text-[var(--color-text-primary)]">
                 {s.city} Boutique
               </h2>
-              <p className="mt-3 text-xs text-[var(--color-text-primary)] font-medium">
+              <p className="mt-3 text-xs font-medium text-[var(--color-text-primary)]">
                 {s.address}
               </p>
-              <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-                {s.phone}
-              </p>
+              <p className="mt-1 text-xs text-[var(--color-text-muted)]">{s.phone}</p>
               <div className="mt-4 border-t border-[var(--color-border)] pt-3 text-xs text-[var(--color-text-muted)]">
-                <p><strong>Hours:</strong> {s.hours}</p>
-                <p className="mt-1"><strong>Atelier Services:</strong> {s.services}</p>
+                <p>
+                  <strong>Hours:</strong> {s.hours}
+                </p>
+                <p className="mt-1">
+                  <strong>Atelier Services:</strong> {s.services}
+                </p>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-[var(--color-border)]">
+            <div className="mt-6 border-t border-[var(--color-border)] pt-4">
               <Link
                 href="/contact"
                 className="text-xs font-bold uppercase tracking-wider text-[var(--color-text-primary)] hover:text-[var(--color-brand-600)]"

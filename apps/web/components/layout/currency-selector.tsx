@@ -44,7 +44,11 @@ export function CurrencySelector({ variant = 'minimal' }: Props) {
         className="cursor-pointer rounded bg-transparent px-1.5 py-0.5 text-[11px] font-bold text-inherit transition-opacity hover:opacity-80 focus-visible:outline-none"
       >
         {Object.values(CURRENCIES).map((c) => (
-          <option key={c.code} value={c.code} className="bg-[var(--color-surface)] text-[var(--color-text-primary)]">
+          <option
+            key={c.code}
+            value={c.code}
+            className="bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+          >
             {c.code} ({c.symbol})
           </option>
         ))}

@@ -173,9 +173,7 @@ function applyCatalogFilters(items: ProductListItem[], opts: FilterOptions): Pro
   if (opts.query) {
     const q = opts.query.toLowerCase()
     result = result.filter(
-      (p) =>
-        p.name.toLowerCase().includes(q) ||
-        p.category.name.toLowerCase().includes(q),
+      (p) => p.name.toLowerCase().includes(q) || p.category.name.toLowerCase().includes(q),
     )
   }
 
@@ -215,10 +213,10 @@ async function fetchProducts(opts: FilterOptions): Promise<{
     if (opts.query) params.set('q', opts.query)
 
     const qs = params.toString() ? `?${params.toString()}` : ''
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/products${qs}`,
-      { next: { revalidate: 60, tags: ['products'] }, signal: AbortSignal.timeout(1200) },
-    )
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products${qs}`, {
+      next: { revalidate: 60, tags: ['products'] },
+      signal: AbortSignal.timeout(1200),
+    })
     if (!res.ok) {
       return { data: applyCatalogFilters(FALLBACK_CATALOG, opts), meta: undefined }
     }
@@ -232,10 +230,10 @@ async function fetchProducts(opts: FilterOptions): Promise<{
 
 async function fetchCategories(): Promise<Category[]> {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/categories`,
-      { next: { revalidate: 3600, tags: ['categories'] }, signal: AbortSignal.timeout(1200) },
-    )
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
+      next: { revalidate: 3600, tags: ['categories'] },
+      signal: AbortSignal.timeout(1200),
+    })
     if (!res.ok) return DEFAULT_CATEGORIES
     const json = (await res.json()) as ApiSuccess<Category[]>
     return json.data?.length > 0 ? json.data : DEFAULT_CATEGORIES
@@ -295,7 +293,11 @@ export default async function ProductsPage({ searchParams }: Props) {
         </div>
 
         {/* Search input component */}
-        <Suspense fallback={<div className="h-10 w-full max-w-md rounded-md bg-[var(--color-surface-raised)]" />}>
+        <Suspense
+          fallback={
+            <div className="h-10 w-full max-w-md rounded-md bg-[var(--color-surface-raised)]" />
+          }
+        >
           <ProductSearchBar initialQuery={query} />
         </Suspense>
       </div>
@@ -304,7 +306,9 @@ export default async function ProductsPage({ searchParams }: Props) {
       {query && (
         <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)] px-3 py-1 text-xs">
           <span className="text-[var(--color-text-muted)]">Showing results for:</span>
-          <span className="font-semibold text-[var(--color-text-primary)]">&ldquo;{query}&rdquo;</span>
+          <span className="font-semibold text-[var(--color-text-primary)]">
+            &ldquo;{query}&rdquo;
+          </span>
           <Link
             href={category ? `/products?category=${category}` : '/products'}
             className="ml-1 text-[var(--color-brand-600)] hover:underline"
@@ -315,12 +319,14 @@ export default async function ProductsPage({ searchParams }: Props) {
       )}
 
       {/* Interactive Faceted Filter Toolbar */}
-      <Suspense fallback={<div className="mb-8 h-12 w-full rounded-md bg-[var(--color-surface-raised)]" />}>
+      <Suspense
+        fallback={<div className="mb-8 h-12 w-full rounded-md bg-[var(--color-surface-raised)]" />}
+      >
         <CatalogFilters categories={categories} totalCount={products.length} />
       </Suspense>
 
       {/* 3:4 Fashion Product Grid */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 sm:gap-6">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
         {products.length === 0 ? (
           <div className="col-span-full flex h-64 flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[var(--color-border)] p-8 text-center">
             <p className="text-base font-semibold text-[var(--color-text-primary)]">

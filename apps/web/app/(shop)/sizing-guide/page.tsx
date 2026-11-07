@@ -12,8 +12,13 @@ export default function SizingGuidePage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Sizing &amp; Care</span>
       </nav>
@@ -27,8 +32,8 @@ export default function SizingGuidePage() {
           Sizing &amp; Care Guide
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
-          Our garments and accessories are crafted according to European luxury standards.
-          Refer to our measurement charts and material maintenance guidelines below.
+          Our garments and accessories are crafted according to European luxury standards. Refer to
+          our measurement charts and material maintenance guidelines below.
         </p>
       </div>
 
@@ -100,9 +105,15 @@ export default function SizingGuidePage() {
             Our luxury timepieces are proportioned for wrist versatility:
           </p>
           <ul className="mt-4 space-y-2 text-xs text-[var(--color-text-muted)]">
-            <li><strong>38mm:</strong> Ideal for smaller to medium wrists (5.5&quot;–6.5&quot;).</li>
-            <li><strong>40mm:</strong> Classic modern unisex standard (6.25&quot;–7.25&quot;).</li>
-            <li><strong>42mm:</strong> Architectural chronograph presence (7.0&quot;+).</li>
+            <li>
+              <strong>38mm:</strong> Ideal for smaller to medium wrists (5.5&quot;–6.5&quot;).
+            </li>
+            <li>
+              <strong>40mm:</strong> Classic modern unisex standard (6.25&quot;–7.25&quot;).
+            </li>
+            <li>
+              <strong>42mm:</strong> Architectural chronograph presence (7.0&quot;+).
+            </li>
           </ul>
         </div>
 
@@ -115,9 +126,15 @@ export default function SizingGuidePage() {
             Dimensions for daily carry:
           </p>
           <ul className="mt-4 space-y-2 text-xs text-[var(--color-text-muted)]">
-            <li><strong>Clutch &amp; Crossbody:</strong> Fits iPhone Pro Max, cardholder, cosmetics.</li>
-            <li><strong>Shoulder Bag:</strong> Fits iPad Mini, water bottle, sunglasses case.</li>
-            <li><strong>Bespoke Tote:</strong> Fits 15&quot; MacBook, documents, jacket, tech pouch.</li>
+            <li>
+              <strong>Clutch &amp; Crossbody:</strong> Fits iPhone Pro Max, cardholder, cosmetics.
+            </li>
+            <li>
+              <strong>Shoulder Bag:</strong> Fits iPad Mini, water bottle, sunglasses case.
+            </li>
+            <li>
+              <strong>Bespoke Tote:</strong> Fits 15&quot; MacBook, documents, jacket, tech pouch.
+            </li>
           </ul>
         </div>
       </div>
@@ -127,23 +144,28 @@ export default function SizingGuidePage() {
         <h3 className="text-base font-bold uppercase text-[var(--color-text-primary)]">
           Atelier Care &amp; Longevity
         </h3>
-        <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-3 text-xs text-[var(--color-text-muted)]">
+        <div className="mt-4 grid grid-cols-1 gap-6 text-xs text-[var(--color-text-muted)] sm:grid-cols-3">
           <div>
             <h4 className="font-semibold text-[var(--color-text-primary)]">Full-Grain Leather</h4>
             <p className="mt-1 leading-relaxed">
-              Store in provided dust bag away from direct sunlight. Treat with natural wax conditioner every 6 months.
+              Store in provided dust bag away from direct sunlight. Treat with natural wax
+              conditioner every 6 months.
             </p>
           </div>
           <div>
             <h4 className="font-semibold text-[var(--color-text-primary)]">Sapphire &amp; Steel</h4>
             <p className="mt-1 leading-relaxed">
-              Rinse with freshwater after saltwater immersion. Wipe crystal clean with microfiber cloth only.
+              Rinse with freshwater after saltwater immersion. Wipe crystal clean with microfiber
+              cloth only.
             </p>
           </div>
           <div>
-            <h4 className="font-semibold text-[var(--color-text-primary)]">Linen &amp; Virgin Wool</h4>
+            <h4 className="font-semibold text-[var(--color-text-primary)]">
+              Linen &amp; Virgin Wool
+            </h4>
             <p className="mt-1 leading-relaxed">
-              Dry clean recommended. Steam lightly to remove travel creases; avoid direct iron contact.
+              Dry clean recommended. Steam lightly to remove travel creases; avoid direct iron
+              contact.
             </p>
           </div>
         </div>

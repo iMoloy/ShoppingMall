@@ -6,10 +6,7 @@ export function Skeleton({ className = '' }: SkeletonProps) {
   return (
     <div
       aria-hidden="true"
-      className={[
-        'animate-pulse rounded-md bg-[var(--color-surface-raised)]',
-        className,
-      ].join(' ')}
+      className={['animate-pulse rounded-md bg-[var(--color-surface-raised)]', className].join(' ')}
     />
   )
 }

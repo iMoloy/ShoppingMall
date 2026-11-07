@@ -34,8 +34,13 @@ export default function ContactPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Client Concierge</span>
       </nav>
@@ -49,8 +54,8 @@ export default function ContactPage() {
           Customer Concierge
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
-          Have an inquiry regarding custom sizing, private appointments, order tracking, or bespoke orders?
-          Our dedicated client specialists are at your disposal.
+          Have an inquiry regarding custom sizing, private appointments, order tracking, or bespoke
+          orders? Our dedicated client specialists are at your disposal.
         </p>
       </div>
 
@@ -66,7 +71,10 @@ export default function ContactPage() {
             </h2>
             <p className="mt-3 text-xs text-[var(--color-text-muted)]">
               Email:{' '}
-              <a href="mailto:support@shoppingmall.com" className="text-[var(--color-text-primary)] font-semibold hover:underline">
+              <a
+                href="mailto:support@shoppingmall.com"
+                className="font-semibold text-[var(--color-text-primary)] hover:underline"
+              >
                 support@shoppingmall.com
               </a>
             </p>
@@ -82,12 +90,10 @@ export default function ContactPage() {
             <h2 className="mt-2 text-base font-bold uppercase text-[var(--color-text-primary)]">
               Headquarters &amp; Studio
             </h2>
-            <p className="mt-3 text-xs text-[var(--color-text-primary)] font-medium">
+            <p className="mt-3 text-xs font-medium text-[var(--color-text-primary)]">
               Shopping Mall Atelier Studio Inc.
             </p>
-            <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-              New York • London • Paris
-            </p>
+            <p className="mt-1 text-xs text-[var(--color-text-muted)]">New York • London • Paris</p>
           </div>
 
           <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-6">
@@ -156,7 +162,7 @@ export default function ContactPage() {
               variant="primary"
               size="lg"
               loading={loading}
-              className="w-full uppercase font-bold text-xs tracking-wider"
+              className="w-full text-xs font-bold uppercase tracking-wider"
             >
               Dispatch Message
             </Button>

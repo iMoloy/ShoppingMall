@@ -33,8 +33,13 @@ export default function ShippingPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Shipping &amp; Delivery</span>
       </nav>
@@ -48,8 +53,8 @@ export default function ShippingPage() {
           Shipping &amp; Delivery
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
-          Every piece from our atelier is meticulously inspected, wrapped in plastic-free archival packaging,
-          and dispatched with full transit insurance.
+          Every piece from our atelier is meticulously inspected, wrapped in plastic-free archival
+          packaging, and dispatched with full transit insurance.
         </p>
       </div>
 
@@ -97,9 +102,13 @@ export default function ShippingPage() {
               How do I track my shipment?
             </h3>
             <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-muted)]">
-              As soon as your parcel departs our warehouse, you will receive an email and SMS with your live
-              courier tracking number and estimated delivery window. You can also view live tracking anytime
-              in your <Link href="/orders" className="underline hover:text-[var(--color-text-primary)]">Order History</Link>.
+              As soon as your parcel departs our warehouse, you will receive an email and SMS with
+              your live courier tracking number and estimated delivery window. You can also view
+              live tracking anytime in your{' '}
+              <Link href="/orders" className="underline hover:text-[var(--color-text-primary)]">
+                Order History
+              </Link>
+              .
             </p>
           </div>
 
@@ -108,8 +117,8 @@ export default function ShippingPage() {
               Are customs &amp; import taxes included?
             </h3>
             <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-muted)]">
-              Yes. All international duties, tariffs, and local VAT are calculated and collected directly at checkout.
-              Your parcel will arrive with zero surprise fees on delivery.
+              Yes. All international duties, tariffs, and local VAT are calculated and collected
+              directly at checkout. Your parcel will arrive with zero surprise fees on delivery.
             </p>
           </div>
         </div>
@@ -121,7 +130,8 @@ export default function ShippingPage() {
           Need Custom Delivery Arrangements?
         </h3>
         <p className="mt-2 text-xs text-[var(--color-text-muted)] sm:text-sm">
-          Our client concierge is on standby for discreet gifting, scheduled delivery dates, and hotel deliveries.
+          Our client concierge is on standby for discreet gifting, scheduled delivery dates, and
+          hotel deliveries.
         </p>
         <div className="mt-6 flex justify-center gap-4">
           <Button asChild variant="primary" size="lg">

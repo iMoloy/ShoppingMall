@@ -49,7 +49,9 @@ export default function NewProductPage() {
     loadCategories()
   }, [])
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
     if (errors[name as keyof CreateProductInput]) {
@@ -113,7 +115,9 @@ export default function NewProductPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Add New Product</h1>
+          <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">
+            Add New Product
+          </h1>
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">
             Create and list a new item in your online store.
           </p>
@@ -124,7 +128,10 @@ export default function NewProductPage() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6"
+      >
         <Input
           label="Product Title"
           name="name"
@@ -175,7 +182,10 @@ export default function NewProductPage() {
 
         {/* Category Selection */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="categoryId" className="text-sm font-medium text-[var(--color-text-primary)]">
+          <label
+            htmlFor="categoryId"
+            className="text-sm font-medium text-[var(--color-text-primary)]"
+          >
             Category
           </label>
           <select
@@ -192,9 +202,7 @@ export default function NewProductPage() {
               </option>
             ))}
           </select>
-          {errors.categoryId && (
-            <p className="text-xs text-red-500">{errors.categoryId}</p>
-          )}
+          {errors.categoryId && <p className="text-xs text-red-500">{errors.categoryId}</p>}
         </div>
 
         {/* Image URL (ImgBB CDN) */}
@@ -209,7 +217,7 @@ export default function NewProductPage() {
           error={errors.imageUrl}
         />
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-[var(--color-border)]">
+        <div className="flex justify-end gap-3 border-t border-[var(--color-border)] pt-4">
           <Button asChild variant="secondary">
             <Link href="/dashboard/products">Cancel</Link>
           </Button>

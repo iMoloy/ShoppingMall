@@ -37,16 +37,12 @@ export function StockUrgencyTimer({ stock }: Props) {
   const isLowStock = stock > 0 && stock <= 5
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)]/60 p-3.5 text-xs">
+    <div className="bg-[var(--color-surface-raised)]/60 flex flex-col gap-2 rounded-xl border border-[var(--color-border)] p-3.5 text-xs">
       {/* Stock level indicator */}
       <div className="flex items-center gap-2">
         <span
           className={`h-2 w-2 rounded-sm ${
-            isLowStock
-              ? 'animate-pulse bg-amber-500'
-              : stock > 0
-                ? 'bg-emerald-500'
-                : 'bg-red-500'
+            isLowStock ? 'animate-pulse bg-amber-500' : stock > 0 ? 'bg-emerald-500' : 'bg-red-500'
           }`}
         />
         <span className="font-semibold text-[var(--color-text-primary)]">
@@ -60,7 +56,7 @@ export function StockUrgencyTimer({ stock }: Props) {
 
       {/* Countdown Timer */}
       {stock > 0 && (
-        <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-[var(--color-text-muted)] border-t border-[var(--color-border)]/50 pt-2">
+        <div className="border-[var(--color-border)]/50 flex flex-wrap items-center gap-1.5 border-t pt-2 text-[11px] text-[var(--color-text-muted)]">
           <span>Order within</span>
           <span className="font-mono font-bold text-[var(--color-text-primary)]">
             {pad(timeLeft.hours)}h {pad(timeLeft.minutes)}m {pad(timeLeft.seconds)}s

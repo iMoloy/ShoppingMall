@@ -50,7 +50,7 @@ export function RecentlyViewed({ currentProduct }: Props) {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 sm:gap-6">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
         {history.slice(0, 4).map((p) => (
           <ProductCard key={p.id} product={p} />
         ))}

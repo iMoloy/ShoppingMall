@@ -11,8 +11,13 @@ export default function CookiesPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Cookie Policy</span>
       </nav>
@@ -36,8 +41,9 @@ export default function CookiesPage() {
             1. Strict Essential-Only Cookie Architecture
           </h2>
           <p className="mt-2">
-            Unlike standard commercial retailers, Shopping Mall rejects intrusive third-party cross-site advertising cookies.
-            We utilize cookies solely for functional integrity and user experience.
+            Unlike standard commercial retailers, Shopping Mall rejects intrusive third-party
+            cross-site advertising cookies. We utilize cookies solely for functional integrity and
+            user experience.
           </p>
         </section>
 
@@ -48,22 +54,31 @@ export default function CookiesPage() {
           <div className="mt-4 space-y-4">
             <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-5">
               <div className="flex items-center justify-between">
-                <h3 className="font-bold uppercase text-[var(--color-text-primary)]">Strictly Essential Cookies</h3>
-                <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">Always Active</span>
+                <h3 className="font-bold uppercase text-[var(--color-text-primary)]">
+                  Strictly Essential Cookies
+                </h3>
+                <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                  Always Active
+                </span>
               </div>
               <p className="mt-2 text-xs text-[var(--color-text-muted)]">
-                Required for core authentication, CSRF security verification, and persistent shopping bag sessions.
-                Without these, checkout and account sign-in cannot operate.
+                Required for core authentication, CSRF security verification, and persistent
+                shopping bag sessions. Without these, checkout and account sign-in cannot operate.
               </p>
             </div>
 
             <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-5">
               <div className="flex items-center justify-between">
-                <h3 className="font-bold uppercase text-[var(--color-text-primary)]">Theme &amp; Accessibility Preferences</h3>
-                <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">Always Active</span>
+                <h3 className="font-bold uppercase text-[var(--color-text-primary)]">
+                  Theme &amp; Accessibility Preferences
+                </h3>
+                <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                  Always Active
+                </span>
               </div>
               <p className="mt-2 text-xs text-[var(--color-text-muted)]">
-                Stores your light/dark mode selection in `localStorage` to prevent visual screen flash when loading new pages.
+                Stores your light/dark mode selection in `localStorage` to prevent visual screen
+                flash when loading new pages.
               </p>
             </div>
           </div>
@@ -74,8 +89,9 @@ export default function CookiesPage() {
             3. How to Manage or Disable Cookies
           </h2>
           <p className="mt-2">
-            You may block or delete cookies via your browser settings at any time. Please note that disabling essential cookies
-            will prevent the shopping cart drawer and checkout flow from maintaining your session.
+            You may block or delete cookies via your browser settings at any time. Please note that
+            disabling essential cookies will prevent the shopping cart drawer and checkout flow from
+            maintaining your session.
           </p>
         </section>
       </div>

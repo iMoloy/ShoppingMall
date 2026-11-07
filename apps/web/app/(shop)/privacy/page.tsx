@@ -11,8 +11,13 @@ export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Privacy Policy</span>
       </nav>
@@ -36,8 +41,9 @@ export default function PrivacyPage() {
             1. Overview &amp; Philosophy
           </h2>
           <p className="mt-2">
-            Shopping Mall Studio Inc. (&ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;) treats your personal privacy as an absolute priority.
-            We never sell, rent, or trade customer data to advertising brokers or third-party behavioral trackers.
+            Shopping Mall Studio Inc. (&ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;) treats
+            your personal privacy as an absolute priority. We never sell, rent, or trade customer
+            data to advertising brokers or third-party behavioral trackers.
           </p>
         </section>
 
@@ -46,12 +52,21 @@ export default function PrivacyPage() {
             2. Information We Collect
           </h2>
           <p className="mt-2">
-            We collect only the essential information needed to fulfill your purchases and ensure secure delivery:
+            We collect only the essential information needed to fulfill your purchases and ensure
+            secure delivery:
           </p>
-          <ul className="mt-3 list-disc pl-5 space-y-1">
-            <li>Contact details: Name, email address, phone number, and physical shipping address.</li>
-            <li>Payment data: Encrypted directly via PCI-DSS Level 1 compliant gateways (Stripe &amp; SSLCommerz). We never store raw credit card numbers on our servers.</li>
-            <li>Order history: Items purchased, sizing preferences, and transaction receipts for warranty servicing.</li>
+          <ul className="mt-3 list-disc space-y-1 pl-5">
+            <li>
+              Contact details: Name, email address, phone number, and physical shipping address.
+            </li>
+            <li>
+              Payment data: Encrypted directly via PCI-DSS Level 1 compliant gateways (Stripe &amp;
+              SSLCommerz). We never store raw credit card numbers on our servers.
+            </li>
+            <li>
+              Order history: Items purchased, sizing preferences, and transaction receipts for
+              warranty servicing.
+            </li>
           </ul>
         </section>
 
@@ -60,8 +75,8 @@ export default function PrivacyPage() {
             3. Data Security &amp; Encryption
           </h2>
           <p className="mt-2">
-            All data in transit is protected by end-to-end 256-bit SSL encryption. Internal database access is strictly isolated
-            and authenticated through raw JWT token rotation.
+            All data in transit is protected by end-to-end 256-bit SSL encryption. Internal database
+            access is strictly isolated and authenticated through raw JWT token rotation.
           </p>
         </section>
 
@@ -70,8 +85,9 @@ export default function PrivacyPage() {
             4. Your Rights (GDPR &amp; CCPA)
           </h2>
           <p className="mt-2">
-            Regardless of your geographic location, you retain full rights to request an export of all personal data held,
-            request permanent erasure of your account, or opt-out of newsletter communications at any time.
+            Regardless of your geographic location, you retain full rights to request an export of
+            all personal data held, request permanent erasure of your account, or opt-out of
+            newsletter communications at any time.
           </p>
         </section>
 
@@ -81,9 +97,13 @@ export default function PrivacyPage() {
           </h2>
           <p className="mt-2">
             Inquiries regarding privacy or data requests can be submitted directly to{' '}
-            <a href="mailto:privacy@shoppingmall.com" className="text-[var(--color-text-primary)] underline">
+            <a
+              href="mailto:privacy@shoppingmall.com"
+              className="text-[var(--color-text-primary)] underline"
+            >
               privacy@shoppingmall.com
-            </a>.
+            </a>
+            .
           </p>
         </section>
       </div>

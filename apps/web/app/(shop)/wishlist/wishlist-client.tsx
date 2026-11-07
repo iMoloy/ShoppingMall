@@ -134,14 +134,15 @@ export function WishlistClient() {
             No Saved Pieces Yet
           </h2>
           <p className="mt-1.5 max-w-sm text-xs leading-relaxed text-[var(--color-text-muted)]">
-            Explore our curated drops of tailoring, leather bags, and classic timepieces and tap the heart icon to save items.
+            Explore our curated drops of tailoring, leather bags, and classic timepieces and tap the
+            heart icon to save items.
           </p>
           <Button asChild variant="primary" size="md" className="mt-6 uppercase tracking-wider">
             <Link href="/products">Explore All Collections</Link>
           </Button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 sm:gap-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
           {items.map((product) => {
             const imageUrl = product.images[0] ?? null
             const inStock = product.stock > 0
@@ -178,7 +179,7 @@ export function WishlistClient() {
                         toast.success(`${product.name} removed from wishlist`)
                       }}
                       aria-label={`Remove ${product.name} from wishlist`}
-                      className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-md bg-[var(--color-surface)]/90 text-[var(--color-text-muted)] shadow-sm backdrop-blur-sm transition-colors hover:text-red-500"
+                      className="bg-[var(--color-surface)]/90 absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-md text-[var(--color-text-muted)] shadow-sm backdrop-blur-sm transition-colors hover:text-red-500"
                     >
                       ✕
                     </button>
@@ -207,7 +208,7 @@ export function WishlistClient() {
                 </div>
 
                 {/* Action button */}
-                <div className="mt-4 pt-3 border-t border-[var(--color-border)]/60">
+                <div className="border-[var(--color-border)]/60 mt-4 border-t pt-3">
                   <Button
                     variant="primary"
                     size="sm"

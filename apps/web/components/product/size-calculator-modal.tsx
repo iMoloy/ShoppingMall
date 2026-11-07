@@ -10,12 +10,7 @@ interface Props {
   productName?: string
 }
 
-export function SizeCalculatorModal({
-  isOpen,
-  onClose,
-  onSelectSize,
-  productName,
-}: Props) {
+export function SizeCalculatorModal({ isOpen, onClose, onSelectSize, productName }: Props) {
   const modalRef = useRef<HTMLDivElement>(null)
 
   const [heightCm, setHeightCm] = useState(175)
@@ -117,7 +112,8 @@ export function SizeCalculatorModal({
 
         {productName && (
           <p className="mt-3 text-xs text-[var(--color-text-muted)]">
-            Tailoring sizing guidance for <strong className="text-[var(--color-text-primary)]">{productName}</strong>.
+            Tailoring sizing guidance for{' '}
+            <strong className="text-[var(--color-text-primary)]">{productName}</strong>.
           </p>
         )}
 
@@ -127,7 +123,10 @@ export function SizeCalculatorModal({
           <div>
             <div className="flex justify-between font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
               <span>Height</span>
-              <span className="font-bold text-[var(--color-text-primary)]">{heightCm} cm ({Math.floor(heightCm / 30.48)}&apos;{Math.round((heightCm % 30.48) / 2.54)}&quot;)</span>
+              <span className="font-bold text-[var(--color-text-primary)]">
+                {heightCm} cm ({Math.floor(heightCm / 30.48)}&apos;
+                {Math.round((heightCm % 30.48) / 2.54)}&quot;)
+              </span>
             </div>
             <input
               type="range"
@@ -148,7 +147,9 @@ export function SizeCalculatorModal({
           <div>
             <div className="flex justify-between font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
               <span>Weight</span>
-              <span className="font-bold text-[var(--color-text-primary)]">{weightKg} kg ({(weightKg * 2.20462).toFixed(0)} lbs)</span>
+              <span className="font-bold text-[var(--color-text-primary)]">
+                {weightKg} kg ({(weightKg * 2.20462).toFixed(0)} lbs)
+              </span>
             </div>
             <input
               type="range"
@@ -167,7 +168,7 @@ export function SizeCalculatorModal({
 
           {/* Fit Preference Pills */}
           <div>
-            <label className="block font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+            <label className="mb-2 block font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
               Preferred Fit Silhouette
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -182,7 +183,7 @@ export function SizeCalculatorModal({
                   onClick={() => setFitPreference(fit.id as 'fitted' | 'regular' | 'oversized')}
                   className={`flex flex-col items-center justify-center rounded-lg border p-2.5 text-center transition-colors ${
                     fitPreference === fit.id
-                      ? 'border-[var(--color-text-primary)] bg-[var(--color-surface-raised)] text-[var(--color-text-primary)] font-bold'
+                      ? 'border-[var(--color-text-primary)] bg-[var(--color-surface-raised)] font-bold text-[var(--color-text-primary)]'
                       : 'border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-text-primary)]'
                   }`}
                 >

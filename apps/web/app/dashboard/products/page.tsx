@@ -41,15 +41,16 @@ export default function AdminProductsPage() {
     }
   }
 
-  const filtered = products.filter((p) =>
-    p.name.toLowerCase().includes(search.toLowerCase()) ||
-    p.category.name.toLowerCase().includes(search.toLowerCase()),
+  const filtered = products.filter(
+    (p) =>
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.category.name.toLowerCase().includes(search.toLowerCase()),
   )
 
   if (loading) {
     return (
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <Skeleton className="h-8 w-44" />
           <Skeleton className="h-9 w-32" />
         </div>
@@ -62,7 +63,7 @@ export default function AdminProductsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-[var(--color-border)] pb-5">
+      <div className="flex flex-col gap-4 border-b border-[var(--color-border)] pb-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
@@ -101,28 +102,35 @@ export default function AdminProductsPage() {
       <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
         {filtered.length === 0 ? (
           <div className="py-16 text-center">
-            <p className="text-sm font-medium text-[var(--color-text-primary)]">No products found</p>
+            <p className="text-sm font-medium text-[var(--color-text-primary)]">
+              No products found
+            </p>
             <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-              {search ? 'Try adjusting your search keywords' : 'Get started by adding your first product.'}
+              {search
+                ? 'Try adjusting your search keywords'
+                : 'Get started by adding your first product.'}
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-[var(--color-border)] text-xs text-[var(--color-text-muted)] uppercase">
+              <thead className="border-b border-[var(--color-border)] text-xs uppercase text-[var(--color-text-muted)]">
                 <tr>
-                  <th className="py-3 px-4">Product</th>
-                  <th className="py-3 px-4">Category</th>
-                  <th className="py-3 px-4">Price</th>
-                  <th className="py-3 px-4">Stock</th>
-                  <th className="py-3 px-4">Status</th>
-                  <th className="py-3 px-4 text-right">Actions</th>
+                  <th className="px-4 py-3">Product</th>
+                  <th className="px-4 py-3">Category</th>
+                  <th className="px-4 py-3">Price</th>
+                  <th className="px-4 py-3">Stock</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[var(--color-border)]">
                 {filtered.map((product) => (
-                  <tr key={product.id} className="hover:bg-[var(--color-surface-raised)] transition-colors">
-                    <td className="py-3 px-4">
+                  <tr
+                    key={product.id}
+                    className="transition-colors hover:bg-[var(--color-surface-raised)]"
+                  >
+                    <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)]">
                           {product.images[0] ? (
@@ -144,16 +152,16 @@ export default function AdminProductsPage() {
                         </span>
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-[var(--color-text-muted)]">
+                    <td className="px-4 py-3 text-[var(--color-text-muted)]">
                       {product.category.name}
                     </td>
-                    <td className="py-3 px-4 font-medium text-[var(--color-text-primary)]">
+                    <td className="px-4 py-3 font-medium text-[var(--color-text-primary)]">
                       ${parseFloat(product.price).toFixed(2)}
                     </td>
-                    <td className="py-3 px-4 text-[var(--color-text-muted)]">
+                    <td className="px-4 py-3 text-[var(--color-text-muted)]">
                       {product.stock} units
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="px-4 py-3">
                       {product.stock > 10 ? (
                         <Badge variant="success">In Stock</Badge>
                       ) : product.stock > 0 ? (
@@ -162,17 +170,17 @@ export default function AdminProductsPage() {
                         <Badge variant="error">Out of Stock</Badge>
                       )}
                     </td>
-                    <td className="py-3 px-4 text-right space-x-2">
+                    <td className="space-x-2 px-4 py-3 text-right">
                       <Link
                         href={`/products/${product.slug}`}
                         target="_blank"
-                        className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
+                        className="text-xs text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text-primary)]"
                       >
                         View
                       </Link>
                       <button
                         onClick={() => handleDelete(product.id, product.name)}
-                        className="text-xs text-red-500 hover:text-red-700 transition-colors"
+                        className="text-xs text-red-500 transition-colors hover:text-red-700"
                       >
                         Delete
                       </button>

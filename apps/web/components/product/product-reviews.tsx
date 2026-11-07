@@ -90,9 +90,7 @@ export function ProductReviews({ productName }: { productName: string }) {
     toast.success('Thank you! Your verified review has been published.')
   }
 
-  const averageRating = (
-    reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length
-  ).toFixed(1)
+  const averageRating = (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1)
 
   return (
     <section className="mt-16 border-t border-[var(--color-border)] pt-12">
@@ -127,14 +125,12 @@ export function ProductReviews({ productName }: { productName: string }) {
           <span className="text-5xl font-black text-[var(--color-text-primary)]">
             {averageRating}
           </span>
-          <div className="mt-2 flex items-center gap-1 text-[var(--color-brand-600)]" aria-label={`Rating: ${averageRating} out of 5 stars`}>
+          <div
+            className="mt-2 flex items-center gap-1 text-[var(--color-brand-600)]"
+            aria-label={`Rating: ${averageRating} out of 5 stars`}
+          >
             {Array.from({ length: 5 }).map((_, i) => (
-              <svg
-                key={i}
-                className="h-4 w-4 fill-current"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
+              <svg key={i} className="h-4 w-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
             ))}
@@ -167,7 +163,7 @@ export function ProductReviews({ productName }: { productName: string }) {
         </div>
 
         {/* Right: Fit Satisfaction */}
-        <div className="flex flex-col justify-center border-t border-[var(--color-border)] pt-6 md:col-span-3 md:border-t-0 md:border-l md:pl-6 md:pt-0">
+        <div className="flex flex-col justify-center border-t border-[var(--color-border)] pt-6 md:col-span-3 md:border-l md:border-t-0 md:pl-6 md:pt-0">
           <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
             Fit Evaluation
           </span>
@@ -217,7 +213,7 @@ export function ProductReviews({ productName }: { productName: string }) {
               </p>
             </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-[var(--color-border)]/60 pt-3 text-[11px] text-[var(--color-text-muted)]">
+            <div className="border-[var(--color-border)]/60 mt-6 flex items-center justify-between border-t pt-3 text-[11px] text-[var(--color-text-muted)]">
               <span className="font-semibold text-[var(--color-text-primary)]">{rev.author}</span>
               <span>{rev.date}</span>
             </div>
@@ -256,7 +252,7 @@ export function ProductReviews({ productName }: { productName: string }) {
             <form onSubmit={handleSubmitReview} className="mt-4 flex flex-col gap-4 text-xs">
               {/* Star Rating Picker */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+                <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
                   Overall Rating
                 </label>
                 <div className="flex items-center gap-1">
@@ -266,7 +262,9 @@ export function ProductReviews({ productName }: { productName: string }) {
                       type="button"
                       onClick={() => setRating(star)}
                       className={`h-8 w-8 text-lg ${
-                        star <= rating ? 'text-[var(--color-brand-600)]' : 'text-[var(--color-border)]'
+                        star <= rating
+                          ? 'text-[var(--color-brand-600)]'
+                          : 'text-[var(--color-border)]'
                       }`}
                     >
                       ★
@@ -278,7 +276,7 @@ export function ProductReviews({ productName }: { productName: string }) {
               {/* Author & Location */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+                  <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
                     Your Name *
                   </label>
                   <input
@@ -291,7 +289,7 @@ export function ProductReviews({ productName }: { productName: string }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+                  <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
                     City / Country
                   </label>
                   <input
@@ -306,7 +304,7 @@ export function ProductReviews({ productName }: { productName: string }) {
 
               {/* Fit Feedback */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+                <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
                   How does it fit?
                 </label>
                 <select
@@ -322,7 +320,7 @@ export function ProductReviews({ productName }: { productName: string }) {
 
               {/* Review Headline */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+                <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
                   Review Headline *
                 </label>
                 <input
@@ -337,7 +335,7 @@ export function ProductReviews({ productName }: { productName: string }) {
 
               {/* Review Content */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+                <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
                   Detailed Experience *
                 </label>
                 <textarea
@@ -355,7 +353,12 @@ export function ProductReviews({ productName }: { productName: string }) {
                 <Button variant="ghost" size="sm" type="button" onClick={() => setModalOpen(false)}>
                   Cancel
                 </Button>
-                <Button variant="primary" size="sm" type="submit" className="uppercase tracking-wider">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  type="submit"
+                  className="uppercase tracking-wider"
+                >
                   Publish Review
                 </Button>
               </div>

@@ -57,9 +57,7 @@ export default function AdminOrdersPage() {
     try {
       const res = await api.patch(`/orders/${orderId}`, { status: newStatus })
       if (res.success) {
-        setOrders((prev) =>
-          prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o)),
-        )
+        setOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o)))
         toast.success(`Order status updated to ${newStatus}`)
       } else {
         toast.error('Failed to update status')
@@ -71,8 +69,7 @@ export default function AdminOrdersPage() {
     }
   }
 
-  const filteredOrders =
-    filter === 'ALL' ? orders : orders.filter((o) => o.status === filter)
+  const filteredOrders = filter === 'ALL' ? orders : orders.filter((o) => o.status === filter)
 
   if (loading) {
     return (
@@ -141,46 +138,53 @@ export default function AdminOrdersPage() {
           <div className="py-16 text-center">
             <p className="text-sm font-medium text-[var(--color-text-primary)]">No orders found</p>
             <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-              {filter !== 'ALL' ? `No orders currently in "${filter}" status.` : 'No customer orders have been received yet.'}
+              {filter !== 'ALL'
+                ? `No orders currently in "${filter}" status.`
+                : 'No customer orders have been received yet.'}
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-[var(--color-border)] text-xs text-[var(--color-text-muted)] uppercase">
+              <thead className="border-b border-[var(--color-border)] text-xs uppercase text-[var(--color-text-muted)]">
                 <tr>
-                  <th className="py-3 px-4">Order ID</th>
-                  <th className="py-3 px-4">Date</th>
-                  <th className="py-3 px-4">Items</th>
-                  <th className="py-3 px-4">Total</th>
-                  <th className="py-3 px-4">Status</th>
-                  <th className="py-3 px-4 text-right">Update Status</th>
+                  <th className="px-4 py-3">Order ID</th>
+                  <th className="px-4 py-3">Date</th>
+                  <th className="px-4 py-3">Items</th>
+                  <th className="px-4 py-3">Total</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3 text-right">Update Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[var(--color-border)]">
                 {filteredOrders.map((order) => (
-                  <tr key={order.id} className="hover:bg-[var(--color-surface-raised)] transition-colors">
-                    <td className="py-3 px-4 font-mono text-xs font-medium text-[var(--color-text-primary)]">
+                  <tr
+                    key={order.id}
+                    className="transition-colors hover:bg-[var(--color-surface-raised)]"
+                  >
+                    <td className="px-4 py-3 font-mono text-xs font-medium text-[var(--color-text-primary)]">
                       {order.id}
                     </td>
-                    <td className="py-3 px-4 text-xs text-[var(--color-text-muted)]">
+                    <td className="px-4 py-3 text-xs text-[var(--color-text-muted)]">
                       {new Date(order.createdAt).toLocaleDateString()}
                     </td>
-                    <td className="py-3 px-4 text-xs text-[var(--color-text-primary)]">
+                    <td className="px-4 py-3 text-xs text-[var(--color-text-primary)]">
                       {order.items.reduce((sum, item) => sum + item.quantity, 0)} items
                       <span className="block text-[10px] text-[var(--color-text-muted)]">
-                        {order.items.map((i) => i.product.name).join(', ').slice(0, 30)}...
+                        {order.items
+                          .map((i) => i.product.name)
+                          .join(', ')
+                          .slice(0, 30)}
+                        ...
                       </span>
                     </td>
-                    <td className="py-3 px-4 font-semibold text-[var(--color-text-primary)]">
+                    <td className="px-4 py-3 font-semibold text-[var(--color-text-primary)]">
                       ${parseFloat(order.total).toFixed(2)}
                     </td>
-                    <td className="py-3 px-4">
-                      <Badge variant={getBadgeVariant(order.status)}>
-                        {order.status}
-                      </Badge>
+                    <td className="px-4 py-3">
+                      <Badge variant={getBadgeVariant(order.status)}>{order.status}</Badge>
                     </td>
-                    <td className="py-3 px-4 text-right">
+                    <td className="px-4 py-3 text-right">
                       <select
                         value={order.status}
                         disabled={updatingId === order.id}

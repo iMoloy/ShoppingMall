@@ -155,7 +155,8 @@ export function LookbookClient() {
         </h1>
         <p className="mt-2 max-w-2xl text-xs leading-relaxed text-[var(--color-text-muted)] sm:text-sm">
           Explore complete outfit compositions curated directly from our Paris and Milan runways.
-          Tap the interactive hotspot pins on any look to discover the exact tailoring and leather pieces.
+          Tap the interactive hotspot pins on any look to discover the exact tailoring and leather
+          pieces.
         </p>
       </div>
 
@@ -199,7 +200,7 @@ export function LookbookClient() {
                       aria-expanded={isActive}
                       className="group relative flex h-7 w-7 items-center justify-center rounded-md bg-[var(--color-text-primary)] text-[var(--color-surface)] shadow-xl transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]"
                     >
-                      <span className="absolute inset-0 animate-ping rounded-md bg-[var(--color-text-primary)]/40" />
+                      <span className="bg-[var(--color-text-primary)]/40 absolute inset-0 animate-ping rounded-md" />
                       <span className="text-xs font-bold leading-none">+</span>
                     </button>
 
@@ -216,7 +217,7 @@ export function LookbookClient() {
                               className="object-cover"
                             />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="min-w-0 flex-1">
                             <span className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-brand-600)]">
                               {hs.product.category.name}
                             </span>
@@ -238,7 +239,12 @@ export function LookbookClient() {
                           >
                             Quick Add +
                           </Button>
-                          <Button asChild variant="secondary" size="sm" className="text-[10px] uppercase">
+                          <Button
+                            asChild
+                            variant="secondary"
+                            size="sm"
+                            className="text-[10px] uppercase"
+                          >
                             <Link href={`/products/${hs.product.slug}`}>View</Link>
                           </Button>
                         </div>
@@ -250,10 +256,12 @@ export function LookbookClient() {
             </div>
 
             {/* Editorial Content Narrative (5 cols) */}
-            <div className={`flex flex-col justify-between lg:col-span-5 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+            <div
+              className={`flex flex-col justify-between lg:col-span-5 ${index % 2 === 1 ? 'lg:order-1' : ''}`}
+            >
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="rounded bg-[var(--color-brand-600)]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
+                  <span className="bg-[var(--color-brand-600)]/10 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
                     {look.lookNumber}
                   </span>
                   <span className="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">
@@ -270,7 +278,7 @@ export function LookbookClient() {
                 </p>
 
                 {/* Featured Products List */}
-                <div className="mt-6 border-t border-[var(--color-border)]/60 pt-4">
+                <div className="border-[var(--color-border)]/60 mt-6 border-t pt-4">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-muted)]">
                     Featured In This Look
                   </span>
@@ -278,7 +286,7 @@ export function LookbookClient() {
                     {look.hotspots.map((hs) => (
                       <li
                         key={hs.id}
-                        className="flex items-center justify-between rounded-lg border border-[var(--color-border)]/60 bg-[var(--color-surface-raised)] p-2.5"
+                        className="border-[var(--color-border)]/60 flex items-center justify-between rounded-lg border bg-[var(--color-surface-raised)] p-2.5"
                       >
                         <div className="flex items-center gap-3">
                           <div className="relative aspect-[3/4] h-12 w-9 shrink-0 overflow-hidden rounded">
@@ -307,7 +315,7 @@ export function LookbookClient() {
                           variant="secondary"
                           size="sm"
                           onClick={() => handleQuickAdd(hs.product)}
-                          className="text-[10px] uppercase font-bold"
+                          className="text-[10px] font-bold uppercase"
                         >
                           Add +
                         </Button>

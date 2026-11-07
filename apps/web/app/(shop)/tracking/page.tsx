@@ -10,7 +10,11 @@ export const metadata: Metadata = {
 
 export default function TrackingPage() {
   return (
-    <Suspense fallback={<div className="mx-auto max-w-5xl px-4 py-20 text-center">Loading shipment dossier...</div>}>
+    <Suspense
+      fallback={
+        <div className="mx-auto max-w-5xl px-4 py-20 text-center">Loading shipment dossier...</div>
+      }
+    >
       <TrackingClient />
     </Suspense>
   )

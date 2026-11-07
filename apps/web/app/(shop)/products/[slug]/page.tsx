@@ -108,10 +108,10 @@ const FALLBACK_PRODUCTS: ProductDetail[] = [
 
 async function fetchProduct(slug: string): Promise<ProductDetail | null> {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/products/${slug}`,
-      { next: { revalidate: 60, tags: [`product-${slug}`] }, signal: AbortSignal.timeout(1200) },
-    )
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${slug}`, {
+      next: { revalidate: 60, tags: [`product-${slug}`] },
+      signal: AbortSignal.timeout(1200),
+    })
     if (res.status === 404) {
       return FALLBACK_PRODUCTS.find((p) => p.slug === slug) ?? null
     }
@@ -119,7 +119,7 @@ async function fetchProduct(slug: string): Promise<ProductDetail | null> {
       return FALLBACK_PRODUCTS.find((p) => p.slug === slug) ?? null
     }
     const json = (await res.json()) as ApiSuccess<ProductDetail>
-    return json.data ?? (FALLBACK_PRODUCTS.find((p) => p.slug === slug) ?? null)
+    return json.data ?? FALLBACK_PRODUCTS.find((p) => p.slug === slug) ?? null
   } catch {
     return FALLBACK_PRODUCTS.find((p) => p.slug === slug) ?? null
   }
@@ -175,11 +175,7 @@ export default async function ProductDetailPage({ params }: Props) {
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
         {/* Left Side: 3:4 Portrait Fashion Media Gallery with Zoom & Lightbox */}
         <div className="flex flex-col gap-4 lg:col-span-7">
-          <ProductGallery
-            images={product.images}
-            productName={product.name}
-            inStock={inStock}
-          />
+          <ProductGallery images={product.images} productName={product.name} inStock={inStock} />
         </div>
 
         {/* Right Side: Product Details & Purchase Actions */}

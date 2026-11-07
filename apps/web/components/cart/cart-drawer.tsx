@@ -152,10 +152,7 @@ export function CartDrawer() {
   }
 
   // Calculations
-  const rawSubtotal = items.reduce(
-    (sum, i) => sum + parseFloat(i.product.price) * i.quantity,
-    0,
-  )
+  const rawSubtotal = items.reduce((sum, i) => sum + parseFloat(i.product.price) * i.quantity, 0)
   const discountAmount = (rawSubtotal * discountPercent) / 100
   const subtotalAfterDiscount = rawSubtotal - discountAmount
   const qualifiesForFreeShipping = subtotalAfterDiscount >= FREE_SHIPPING_THRESHOLD
@@ -174,7 +171,7 @@ export function CartDrawer() {
         onClick={closeCart}
         aria-hidden="true"
         className={`fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
       />
 
@@ -222,7 +219,7 @@ export function CartDrawer() {
         </div>
 
         {/* Free Shipping Progress Indicator */}
-        <div className="border-b border-[var(--color-border)] bg-[var(--color-surface-raised)]/50 px-5 py-3">
+        <div className="bg-[var(--color-surface-raised)]/50 border-b border-[var(--color-border)] px-5 py-3">
           <div className="mb-2 flex items-center justify-between text-xs">
             {qualifiesForFreeShipping ? (
               <span className="inline-flex items-center gap-1.5 font-bold text-[var(--color-text-primary)]">
@@ -312,7 +309,7 @@ export function CartDrawer() {
                     <Link
                       href={`/products/${item.product.slug}`}
                       onClick={closeCart}
-                      className="group relative aspect-[3/4] h-24 w-18 shrink-0 overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)]"
+                      className="w-18 group relative aspect-[3/4] h-24 shrink-0 overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)]"
                     >
                       {item.product.images[0] ? (
                         <Image
@@ -401,7 +398,7 @@ export function CartDrawer() {
               </ul>
 
               {/* In-Drawer Curated Add-ons Strip ("Complete The Look") */}
-              <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)]/60 p-4">
+              <div className="bg-[var(--color-surface-raised)]/60 rounded-xl border border-[var(--color-border)] p-4">
                 <div className="mb-3 flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-600)]">
                     Complete The Look
@@ -415,7 +412,7 @@ export function CartDrawer() {
                   {CURATED_ADDONS.map((addon) => (
                     <div
                       key={addon.id}
-                      className="flex items-center justify-between gap-3 rounded-lg border border-[var(--color-border)]/60 bg-[var(--color-surface)] p-2 transition-colors hover:border-[var(--color-border)]"
+                      className="border-[var(--color-border)]/60 flex items-center justify-between gap-3 rounded-lg border bg-[var(--color-surface)] p-2 transition-colors hover:border-[var(--color-border)]"
                     >
                       <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-md">
                         <Image
@@ -426,7 +423,7 @@ export function CartDrawer() {
                           className="object-cover"
                         />
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="min-w-0 flex-1">
                         <p className="truncate text-xs font-medium text-[var(--color-text-primary)]">
                           {addon.name}
                         </p>
@@ -492,7 +489,7 @@ export function CartDrawer() {
                   <button
                     type="button"
                     onClick={handleRemovePromo}
-                    className="text-[11px] uppercase font-bold text-[var(--color-text-muted)] hover:text-red-500"
+                    className="text-[11px] font-bold uppercase text-[var(--color-text-muted)] hover:text-red-500"
                   >
                     Remove
                   </button>
@@ -501,7 +498,7 @@ export function CartDrawer() {
             </div>
 
             {/* Price Breakdown */}
-            <div className="flex flex-col gap-1.5 border-t border-[var(--color-border)]/60 pt-3 text-xs">
+            <div className="border-[var(--color-border)]/60 flex flex-col gap-1.5 border-t pt-3 text-xs">
               <div className="flex justify-between text-[var(--color-text-muted)]">
                 <span>Subtotal</span>
                 <span className="font-medium text-[var(--color-text-primary)]">
@@ -510,7 +507,7 @@ export function CartDrawer() {
               </div>
 
               {discountAmount > 0 && (
-                <div className="flex justify-between text-[var(--color-brand-600)] font-medium">
+                <div className="flex justify-between font-medium text-[var(--color-brand-600)]">
                   <span>Voucher Discount</span>
                   <span>-${discountAmount.toFixed(2)}</span>
                 </div>
@@ -535,7 +532,12 @@ export function CartDrawer() {
 
             {/* Checkout Action CTA */}
             <div className="mt-4 flex flex-col gap-2">
-              <Button asChild variant="primary" size="lg" className="w-full uppercase tracking-wider">
+              <Button
+                asChild
+                variant="primary"
+                size="lg"
+                className="w-full uppercase tracking-wider"
+              >
                 <Link href="/checkout" onClick={closeCart}>
                   Proceed to Checkout →
                 </Link>

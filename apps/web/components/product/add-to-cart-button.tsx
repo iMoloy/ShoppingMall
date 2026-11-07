@@ -97,7 +97,7 @@ export function AddToCartButton({ product, disabled = false }: Props) {
         loading={loading}
         disabled={disabled}
         onClick={handleAdd}
-        className="h-11 flex-1 uppercase tracking-wider font-semibold text-xs"
+        className="h-11 flex-1 text-xs font-semibold uppercase tracking-wider"
       >
         {disabled ? 'Out of Stock' : 'Add to Shopping Bag'}
       </Button>

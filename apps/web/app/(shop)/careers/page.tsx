@@ -39,8 +39,13 @@ export default function CareersPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Careers</span>
       </nav>
@@ -97,7 +102,8 @@ export default function CareersPage() {
           Don&apos;t See Your Exact Role?
         </h3>
         <p className="mt-2 text-xs text-[var(--color-text-muted)] sm:text-sm">
-          We are always eager to connect with exceptional talent across atelier design, photography, and engineering.
+          We are always eager to connect with exceptional talent across atelier design, photography,
+          and engineering.
         </p>
         <div className="mt-6 flex justify-center gap-4">
           <Button asChild variant="primary" size="lg">

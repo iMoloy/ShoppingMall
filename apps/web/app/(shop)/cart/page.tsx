@@ -32,15 +32,14 @@ export default function CartPage() {
     }
   }
 
-  const subtotal = items.reduce(
-    (sum, i) => sum + parseFloat(i.product.price) * i.quantity,
-    0,
-  )
+  const subtotal = items.reduce((sum, i) => sum + parseFloat(i.product.price) * i.quantity, 0)
 
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6">
-        <h1 className="text-xl font-semibold text-[var(--color-text-primary)]">Your cart is empty</h1>
+        <h1 className="text-xl font-semibold text-[var(--color-text-primary)]">
+          Your cart is empty
+        </h1>
         <p className="mt-2 text-sm text-[var(--color-text-muted)]">
           Looks like you haven&apos;t added any items to your cart yet.
         </p>
@@ -55,14 +54,19 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-      <h1 className="mb-8 text-2xl font-semibold text-[var(--color-text-primary)]">Shopping Cart</h1>
+      <h1 className="mb-8 text-2xl font-semibold text-[var(--color-text-primary)]">
+        Shopping Cart
+      </h1>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
         {/* Cart items list */}
         <div className="lg:col-span-8">
           <div className="divide-y divide-[var(--color-border)] rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
             {items.map((item) => (
-              <div key={item.id} className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+              <div
+                key={item.id}
+                className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6"
+              >
                 <div className="flex items-center gap-4">
                   <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)]">
                     {item.product.images[0] ? (
@@ -136,16 +140,22 @@ export default function CartPage() {
         {/* Order Summary Card */}
         <div className="lg:col-span-4">
           <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-            <h2 className="text-base font-semibold text-[var(--color-text-primary)]">Order Summary</h2>
+            <h2 className="text-base font-semibold text-[var(--color-text-primary)]">
+              Order Summary
+            </h2>
 
             <div className="mt-6 space-y-4">
               <div className="flex justify-between text-sm">
                 <span className="text-[var(--color-text-muted)]">Subtotal</span>
-                <span className="font-medium text-[var(--color-text-primary)]">${subtotal.toFixed(2)}</span>
+                <span className="font-medium text-[var(--color-text-primary)]">
+                  ${subtotal.toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-[var(--color-text-muted)]">Shipping</span>
-                <span className="text-xs text-[var(--color-text-muted)]">Calculated at checkout</span>
+                <span className="text-xs text-[var(--color-text-muted)]">
+                  Calculated at checkout
+                </span>
               </div>
               <div className="border-t border-[var(--color-border)] pt-4">
                 <div className="flex justify-between text-base font-semibold text-[var(--color-text-primary)]">

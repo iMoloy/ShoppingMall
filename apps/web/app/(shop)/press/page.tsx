@@ -33,8 +33,13 @@ export default function PressPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
-        <Link href="/" className="hover:text-[var(--color-text-primary)]">Home</Link>
+      <nav
+        aria-label="Breadcrumb"
+        className="mb-6 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]"
+      >
+        <Link href="/" className="hover:text-[var(--color-text-primary)]">
+          Home
+        </Link>
         <span>/</span>
         <span className="text-[var(--color-text-primary)]">Press &amp; Editorial</span>
       </nav>
@@ -48,8 +53,8 @@ export default function PressPage() {
           Press &amp; Editorial
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
-          Official press releases, high-resolution campaign assets, lookbook imagery,
-          and media relations for journalists, stylists, and editors.
+          Official press releases, high-resolution campaign assets, lookbook imagery, and media
+          relations for journalists, stylists, and editors.
         </p>
       </div>
 
@@ -87,13 +92,16 @@ export default function PressPage() {
             <h3 className="text-xl font-bold uppercase text-[var(--color-text-primary)]">
               Press Kit &amp; High-Res Assets
             </h3>
-            <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-muted)] max-w-xl">
-              Download current collection lookbooks, behind-the-scenes artisan photography, brand logos,
-              and executive biographies for publishing.
+            <p className="mt-2 max-w-xl text-xs leading-relaxed text-[var(--color-text-muted)]">
+              Download current collection lookbooks, behind-the-scenes artisan photography, brand
+              logos, and executive biographies for publishing.
             </p>
             <p className="mt-3 text-xs text-[var(--color-text-primary)]">
               <strong>Direct Press Contact:</strong>{' '}
-              <a href="mailto:press@shoppingmall.com" className="underline hover:text-[var(--color-brand-600)]">
+              <a
+                href="mailto:press@shoppingmall.com"
+                className="underline hover:text-[var(--color-brand-600)]"
+              >
                 press@shoppingmall.com
               </a>
             </p>

@@ -49,14 +49,14 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-[var(--color-border)] bg-[var(--color-surface)]">
       {/* Upper Footer: Brand Philosophy & Direct Client Help */}
-      <div className="border-b border-[var(--color-border)]/70 py-10">
+      <div className="border-[var(--color-border)]/70 border-b py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
             <div>
               <span className="text-sm font-extrabold uppercase tracking-[0.25em] text-[var(--color-text-primary)]">
                 Shopping Mall
               </span>
-              <p className="mt-1 text-xs text-[var(--color-text-muted)] max-w-lg leading-relaxed">
+              <p className="mt-1 max-w-lg text-xs leading-relaxed text-[var(--color-text-muted)]">
                 An atelier of timeless fashion, architectural leathercraft, and precision horology.
                 Crafted with deliberate restraint and honest pricing.
               </p>
@@ -75,7 +75,7 @@ export function Footer() {
                   support@shoppingmall.com
                 </a>
               </div>
-              <div className="hidden sm:block text-[var(--color-border)]">•</div>
+              <div className="hidden text-[var(--color-border)] sm:block">•</div>
               <div>
                 <span className="font-semibold uppercase tracking-wider text-[var(--color-text-primary)]">
                   Worldwide Delivery:
@@ -112,7 +112,7 @@ export function Footer() {
         </div>
 
         {/* Social Icons Strip in Footer */}
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-border)]/70 pt-8">
+        <div className="border-[var(--color-border)]/70 mt-12 flex flex-wrap items-center justify-between gap-4 border-t pt-8">
           <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
             <span>Connect with Us:</span>
             <div className="flex items-center gap-2">
@@ -165,16 +165,22 @@ export function Footer() {
         </div>
 
         {/* Bottom Legal Copyright */}
-        <div className="mt-8 flex flex-col justify-between gap-4 border-t border-[var(--color-border)]/50 pt-6 text-[11px] text-[var(--color-text-muted)] sm:flex-row sm:items-center">
+        <div className="border-[var(--color-border)]/50 mt-8 flex flex-col justify-between gap-4 border-t pt-6 text-[11px] text-[var(--color-text-muted)] sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} Shopping Mall Studio Inc. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-6">
-            <Link href="/privacy" className="hover:text-[var(--color-text-primary)] hover:underline">
+            <Link
+              href="/privacy"
+              className="hover:text-[var(--color-text-primary)] hover:underline"
+            >
               Privacy Policy
             </Link>
             <Link href="/terms" className="hover:text-[var(--color-text-primary)] hover:underline">
               Terms of Service
             </Link>
-            <Link href="/cookies" className="hover:text-[var(--color-text-primary)] hover:underline">
+            <Link
+              href="/cookies"
+              className="hover:text-[var(--color-text-primary)] hover:underline"
+            >
               Cookie Preferences
             </Link>
           </div>
