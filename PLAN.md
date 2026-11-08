@@ -432,11 +432,11 @@ Button variants:
 | B3  | Global setup & security                  | Helmet, CORS, Throttler rate limiting, pino structured logger, exception filter | ✅     |
 | B4  | Health check endpoint                    | `GET /api/v1/health` with database ping and uptime metrics                      | ✅     |
 | B5  | Auth module                              | Registration, login, refresh token rotation, logout, JWT passport guards        | ✅     |
-| B6  | Users module                             | Profile management, shipping address book                                       | ⬜     |
-| B7  | Categories module                        | Category listing and admin CRUD                                                 | ⬜     |
-| B8  | Products module                          | Cursor pagination, full-text search, category filter, admin product CRUD        | ⬜     |
-| B9  | Uploads module                           | Image uploads to ImgBB / Cloud CDN                                              | ⬜     |
-| B10 | Cart module                              | User cart persistence, sync with guest cart                                     | ⬜     |
+| B6  | Users module                             | Profile management, shipping address book                                       | ✅     |
+| B7  | Categories module                        | Category listing and admin CRUD                                                 | ✅     |
+| B8  | Products module                          | Cursor pagination, full-text search, category filter, admin product CRUD        | ✅     |
+| B9  | Uploads module                           | Image uploads to ImgBB / Cloud CDN                                              | ✅     |
+| B10 | Cart module                              | User cart persistence, sync with guest cart                                     | ✅     |
 | B11 | Wishlist module                          | User wishlist persistence and toggles                                           | ⬜     |
 | B12 | Reviews module                           | Verified purchaser ratings and reviews                                          | ⬜     |
 | B13 | Orders & Tracking module                 | Atomic order creation, idempotency key, status milestones, waybill tracking     | ⬜     |

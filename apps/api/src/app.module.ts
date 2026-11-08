@@ -7,6 +7,11 @@ import { validateEnv } from './config/env.validation';
 import { PrismaModule } from './prisma/prisma.module';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { CategoriesModule } from './categories/categories.module';
+import { ProductsModule } from './products/products.module';
+import { UploadsModule } from './uploads/uploads.module';
+import { CartModule } from './cart/cart.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { ResponseTransformInterceptor } from './common/interceptors/response-transform.interceptor';
 import { CorrelationIdInterceptor } from './common/interceptors/correlation-id.interceptor';
@@ -46,6 +51,11 @@ import { CorrelationIdInterceptor } from './common/interceptors/correlation-id.i
     PrismaModule,
     HealthModule,
     AuthModule,
+    UsersModule,
+    CategoriesModule,
+    ProductsModule,
+    UploadsModule,
+    CartModule,
   ],
   providers: [
     {
