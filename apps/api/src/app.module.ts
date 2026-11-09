@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { ScheduleModule } from '@nestjs/schedule';
 import { APP_GUARD, APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggerModule } from 'nestjs-pino';
 import { validateEnv } from './config/env.validation';
@@ -12,6 +13,11 @@ import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './products/products.module';
 import { UploadsModule } from './uploads/uploads.module';
 import { CartModule } from './cart/cart.module';
+import { WishlistModule } from './wishlist/wishlist.module';
+import { ReviewsModule } from './reviews/reviews.module';
+import { OrdersModule } from './orders/orders.module';
+import { PaymentsModule } from './payments/payments.module';
+import { AuditModule } from './audit/audit.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { ResponseTransformInterceptor } from './common/interceptors/response-transform.interceptor';
 import { CorrelationIdInterceptor } from './common/interceptors/correlation-id.interceptor';
@@ -22,6 +28,7 @@ import { CorrelationIdInterceptor } from './common/interceptors/correlation-id.i
       isGlobal: true,
       validate: validateEnv,
     }),
+    ScheduleModule.forRoot(),
     LoggerModule.forRoot({
       pinoHttp: {
         transport:
@@ -56,6 +63,11 @@ import { CorrelationIdInterceptor } from './common/interceptors/correlation-id.i
     ProductsModule,
     UploadsModule,
     CartModule,
+    WishlistModule,
+    ReviewsModule,
+    OrdersModule,
+    PaymentsModule,
+    AuditModule,
   ],
   providers: [
     {

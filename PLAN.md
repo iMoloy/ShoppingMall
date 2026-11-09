@@ -437,11 +437,11 @@ Button variants:
 | B8  | Products module                          | Cursor pagination, full-text search, category filter, admin product CRUD        | ✅     |
 | B9  | Uploads module                           | Image uploads to ImgBB / Cloud CDN                                              | ✅     |
 | B10 | Cart module                              | User cart persistence, sync with guest cart                                     | ✅     |
-| B11 | Wishlist module                          | User wishlist persistence and toggles                                           | ⬜     |
-| B12 | Reviews module                           | Verified purchaser ratings and reviews                                          | ⬜     |
-| B13 | Orders & Tracking module                 | Atomic order creation, idempotency key, status milestones, waybill tracking     | ⬜     |
-| B14 | Payment module                           | SSLCommerz (BD) + Stripe webhook integration                                    | ⬜     |
-| B15 | Audit log & Maintenance                  | Admin audit log trails and expired token cleanup cron                           | ⬜     |
+| B11 | Wishlist module                          | User wishlist persistence and toggles                                           | ✅     |
+| B12 | Reviews module                           | Verified purchaser ratings and reviews                                          | ✅     |
+| B13 | Orders & Tracking module                 | Atomic order creation, idempotency key, status milestones, waybill tracking     | ✅     |
+| B14 | Payment module                           | SSLCommerz (BD) + Stripe webhook integration                                    | ✅     |
+| B15 | Audit log & Maintenance                  | Admin audit log trails and expired token cleanup cron                           | ✅     |
 
 ---
 
