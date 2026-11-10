@@ -15,7 +15,7 @@ import { LoginDto } from './dto/login.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { CurrentUser } from './decorators/current-user.decorator';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 const REFRESH_COOKIE_NAME = 'jid';
 
@@ -58,10 +58,11 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const token =
-      req.cookies?.[REFRESH_COOKIE_NAME] || dto.refreshToken;
-    const result = await this.authService.refreshTokens(token);
+      req.cookies?.[REFRESH_COOKIE_NAME] || dto?.refreshToken;
+    const result = await this.authService.refreshTokens(token ?? '');
     this.setRefreshTokenCookie(res, result.refreshToken);
     return {
+      user: result.user,
       accessToken: result.accessToken,
     };
   }

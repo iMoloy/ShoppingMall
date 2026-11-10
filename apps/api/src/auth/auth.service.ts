@@ -155,12 +155,22 @@ export class AuthService {
     });
 
     // Rotate: Issue new pair retaining the familyId
-    return this.generateTokens(
+    const tokens = await this.generateTokens(
       storedToken.userId,
       storedToken.user.email,
       storedToken.user.role,
       storedToken.familyId,
     );
+
+    return {
+      user: {
+        id: storedToken.user.id,
+        email: storedToken.user.email,
+        name: storedToken.user.name,
+        role: storedToken.user.role,
+      },
+      ...tokens,
+    };
   }
 
   async logout(rawRefreshToken?: string) {

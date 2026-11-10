@@ -102,6 +102,10 @@ export class QueryProductsDto {
 
   @IsOptional()
   @IsString()
+  q?: string;
+
+  @IsOptional()
+  @IsString()
   category?: string;
 
   @IsOptional()

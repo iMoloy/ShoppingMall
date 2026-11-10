@@ -24,10 +24,11 @@ export class ProductsService {
       deletedAt: null,
     };
 
-    if (query.search) {
+    const searchTerm = query.search || query.q;
+    if (searchTerm) {
       where.OR = [
-        { name: { contains: query.search, mode: 'insensitive' } },
-        { description: { contains: query.search, mode: 'insensitive' } },
+        { name: { contains: searchTerm, mode: 'insensitive' } },
+        { description: { contains: searchTerm, mode: 'insensitive' } },
       ];
     }
 
