@@ -53,3 +53,4 @@ prisma/migrations/*.sql.bak
 
 # TypeScript
 *.tsbuildinfo
+.neon
