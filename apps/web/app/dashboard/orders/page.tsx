@@ -41,7 +41,7 @@ export default function AdminOrdersPage() {
   useEffect(() => {
     async function loadOrders() {
       try {
-        const res = await api.get<OrderResponse[]>('/orders')
+        const res = await api.get<OrderResponse[]>('/orders/admin/all')
         if (res.success) {
           setOrders(res.data)
         }
@@ -55,7 +55,7 @@ export default function AdminOrdersPage() {
   async function handleStatusChange(orderId: string, newStatus: string) {
     setUpdatingId(orderId)
     try {
-      const res = await api.patch(`/orders/${orderId}`, { status: newStatus })
+      const res = await api.patch(`/orders/admin/${orderId}/status`, { status: newStatus })
       if (res.success) {
         setOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o)))
         toast.success(`Order status updated to ${newStatus}`)

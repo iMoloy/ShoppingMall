@@ -17,7 +17,7 @@ export default function DashboardOverviewPage() {
     async function loadData() {
       try {
         const [ordersRes, productsRes] = await Promise.all([
-          api.get<OrderResponse[]>('/orders'),
+          api.get<OrderResponse[]>('/orders/admin/all'),
           api.get<ProductListItem[]>('/products?limit=100'),
         ])
 

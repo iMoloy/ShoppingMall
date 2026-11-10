@@ -91,7 +91,11 @@ export default function NewProductPage() {
     setLoading(true)
     try {
       const res = await api.post('/products', {
-        ...validation.data,
+        name: validation.data.name,
+        description: validation.data.description,
+        price: validation.data.price,
+        stock: validation.data.stock,
+        categoryId: validation.data.categoryId,
         images: validation.data.imageUrl ? [validation.data.imageUrl] : [],
       })
 

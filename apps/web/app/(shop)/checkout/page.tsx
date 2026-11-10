@@ -7,7 +7,8 @@ import { useCartStore } from '@/store/cart'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from '@/components/ui/toast'
-import { api } from '@/lib/api'
+import { api, getAccessToken } from '@/lib/api'
+import { useCurrencyStore } from '@/store/currency'
 import { checkoutSchema, type CheckoutInput } from '@/lib/validations'
 import type { OrderResponse } from '@shoppingmall/shared-types'
 
@@ -31,6 +32,7 @@ const DEMO_ADDRESS: CheckoutInput = {
 
 export default function CheckoutPage() {
   const { items, clear } = useCartStore()
+  const { current: currency } = useCurrencyStore()
   const [step, setStep] = useState<Step>('address')
   const [address, setAddress] = useState<CheckoutInput>(EMPTY_ADDRESS)
   const [errors, setErrors] = useState<Partial<Record<keyof CheckoutInput, string>>>({})
@@ -136,12 +138,28 @@ export default function CheckoutPage() {
     const generatedId = `ORD-${Date.now().toString(36).toUpperCase()}-${Math.floor(100 + Math.random() * 900)}`
 
     try {
-      const res = await api.post<OrderResponse>('/orders', {
-        address,
+      if (getAccessToken() && items.length > 0) {
+        await api.post('/cart/sync', {
+          items: items.map((item) => ({
+            productId: item.product.id,
+            quantity: item.quantity,
+          })),
+        })
+      }
+
+      const res = await api.post<OrderResponse & { trackingNumber?: string }>('/orders', {
+        addressSnapshot: {
+          label: 'Home',
+          line1: address.line1,
+          ...(address.line2 ? { line2: address.line2 } : {}),
+          city: address.city,
+          country: 'Bangladesh',
+        },
+        currency,
         idempotencyKey: `idemp-${Date.now()}`,
       })
       if (res.success && res.data) {
-        setOrderId(res.data.id)
+        setOrderId(res.data.trackingNumber || res.data.id)
       } else {
         setOrderId(generatedId)
       }

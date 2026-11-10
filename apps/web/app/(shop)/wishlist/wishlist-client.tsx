@@ -6,13 +6,17 @@ import { useWishlistStore } from '@/store/wishlist'
 import { useCartStore } from '@/store/cart'
 import { toast } from '@/components/ui/toast'
 import { Button } from '@/components/ui/button'
+import { api, getAccessToken } from '@/lib/api'
 import type { ProductListItem } from '@shoppingmall/shared-types'
 
 export function WishlistClient() {
   const { items, removeItem, clearWishlist } = useWishlistStore()
   const { addItem, openCart } = useCartStore()
 
-  function handleMoveToBag(product: ProductListItem) {
+  async function handleMoveToBag(product: ProductListItem) {
+    if (getAccessToken()) {
+      await api.post(`/wishlist/${product.id}/move-to-cart`).catch(() => null)
+    }
     addItem({
       id: `cart-${product.id}`,
       quantity: 1,

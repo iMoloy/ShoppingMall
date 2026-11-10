@@ -6,6 +6,24 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { toast } from '@/components/ui/toast'
+import { api } from '@/lib/api'
+
+interface LiveTrackingResponse {
+  order: {
+    id: string
+    status: string
+    courier: string | null
+    trackingNumber: string | null
+    total: string
+    currency: string
+    items: {
+      quantity: number
+      priceAtTime: string
+      product: { name: string; images: string[] }
+    }[]
+  }
+  milestones: { stage: string; description: string; done: boolean }[]
+}
 
 interface TimelineEvent {
   status: string
@@ -64,15 +82,40 @@ export function TrackingClient() {
   const initialOrderId = searchParams.get('orderId') ?? 'ORD-LUX-2026-X89'
   const [orderQuery, setOrderQuery] = useState(initialOrderId)
   const [activeOrderId, setActiveOrderId] = useState<string | null>(initialOrderId)
+  const [liveData, setLiveData] = useState<LiveTrackingResponse | null>(null)
+  const [searching, setSearching] = useState(false)
 
-  function handleSearch(e: React.FormEvent) {
+  async function handleSearch(e: React.FormEvent) {
     e.preventDefault()
-    if (!orderQuery.trim()) {
-      toast.error('Please enter a valid order number.')
+    const trimmed = orderQuery.trim()
+    if (!trimmed) {
+      toast.error('Please enter a valid order or waybill number.')
       return
     }
-    setActiveOrderId(orderQuery.trim())
-    toast.success(`Dossier found for ${orderQuery.trim()}`)
+    setSearching(true)
+    try {
+      const res = await api.get<LiveTrackingResponse>(`/orders/track/${encodeURIComponent(trimmed)}`, {
+        skipAuth: true,
+      })
+      if (res.success && res.data) {
+        setLiveData(res.data)
+        setActiveOrderId(res.data.order.trackingNumber || trimmed)
+        toast.success(`Live shipment dossier loaded for ${trimmed}`)
+        return
+      }
+    } catch {
+      // Fallback to sample preview if API or demo waybill is offline
+    } finally {
+      setSearching(false)
+    }
+
+    if (trimmed === 'ORD-LUX-2026-X89') {
+      setLiveData(null)
+      setActiveOrderId(trimmed)
+      toast.success(`Demo dossier loaded for ${trimmed}`)
+    } else {
+      toast.error(`No shipment found for ${trimmed}`)
+    }
   }
 
   function handleDownloadInvoice() {
@@ -116,8 +159,14 @@ export function TrackingClient() {
           placeholder="Enter order ID (e.g. ORD-LUX-2026-X89)"
           className="flex-1 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 font-mono text-xs uppercase text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-600)]"
         />
-        <Button type="submit" variant="primary" size="md" className="uppercase tracking-wider">
-          Track
+        <Button
+          type="submit"
+          variant="primary"
+          size="md"
+          disabled={searching}
+          className="uppercase tracking-wider"
+        >
+          {searching ? 'Checking...' : 'Track'}
         </Button>
       </form>
 
@@ -155,22 +204,24 @@ export function TrackingClient() {
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
                   Courier Partner
                 </span>
-                <p className="mt-1 font-bold text-[var(--color-text-primary)]">DHL Express VIP</p>
+                <p className="mt-1 font-bold text-[var(--color-text-primary)]">
+                  {liveData?.order.courier || 'DHL Express VIP'}
+                </p>
               </div>
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
                   Waybill Number
                 </span>
                 <p className="mt-1 font-mono font-bold text-[var(--color-text-primary)]">
-                  DHL-FR-9824104
+                  {liveData?.order.trackingNumber || 'DHL-FR-9824104'}
                 </p>
               </div>
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
-                  Service Level
+                  Status
                 </span>
                 <p className="mt-1 font-bold text-emerald-600 dark:text-emerald-400">
-                  White Glove Priority
+                  {liveData?.order.status || 'White Glove Priority'}
                 </p>
               </div>
               <div>
@@ -189,7 +240,17 @@ export function TrackingClient() {
             </h2>
 
             <ol className="relative ml-3 space-y-8 border-l border-[var(--color-border)]">
-              {DEFAULT_TIMELINE.map((step) => (
+              {(liveData
+                ? liveData.milestones.map((m, idx, arr) => ({
+                    status: m.stage,
+                    location: liveData.order.courier || 'Atelier Logistics',
+                    timestamp: m.done ? 'Completed' : 'Pending',
+                    description: m.description,
+                    completed: m.done,
+                    current: m.done && (idx === arr.length - 1 || !arr[idx + 1]?.done),
+                  }))
+                : DEFAULT_TIMELINE
+              ).map((step) => (
                 <li key={step.status} className="mb-8 ml-6 last:mb-0">
                   <span
                     className={`absolute -left-3 flex h-6 w-6 items-center justify-center rounded-md text-xs font-bold ${
